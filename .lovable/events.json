@@ -13,6 +13,30 @@
         "additionalProperties": false,
         "properties": {}
       }
+    },
+    "project.coupon_selected": {
+      "event_schema_version": 1,
+      "description": "Customer selects an available coupon; eligibility is checked separately.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "coupon"
+        ],
+        "properties": {
+          "coupon": {
+            "type": "string",
+            "enum": [
+              "Follower20",
+              "Subscriber50"
+            ]
+          }
+        }
+      }
     }
   }
 }
