@@ -214,3 +214,28 @@
   --color-sindoor-hi: var(--sindoor-hi);
 }
 /* site-import tokens: end */
+
+/* Brand tokens for the new order experience; imported pages retain their captured palette. */
+:root {
+  --checkout-navy: oklch(0.237 0.069 258);
+  --checkout-on-navy: oklch(0.982 0.006 100);
+  --checkout-gold: oklch(0.71 0.12 80);
+  --checkout-marigold: oklch(0.84 0.15 90);
+  --checkout-copper: oklch(0.62 0.105 60);
+  --checkout-success: oklch(0.47 0.1 155);
+  --gradient-gold: linear-gradient(115deg, var(--checkout-gold), var(--checkout-marigold), var(--checkout-copper));
+  --font-checkout-body: 'Poppins', sans-serif;
+  --font-checkout-display: 'Cinzel', Georgia, serif;
+}
+.checkout-page {
+  --background: oklch(0.95 0.03 87);
+  --foreground: var(--checkout-navy);
+  --card: oklch(0.991 0.007 90);
+  --primary: var(--checkout-gold);
+  --primary-foreground: var(--checkout-navy);
+  --muted-foreground: oklch(0.48 0.035 65);
+  --accent: oklch(0.967 0.024 87);
+  --border: oklch(0.73 0.075 75);
+  --input: oklch(0.85 0.04 82);
+  --ring: var(--checkout-gold);
+}
