@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import capturedCSS from "../styles/pages/termshtml-47f0e8934fe6baef.css?raw";
+import capturedCSS from "../styles/pages/terms.html.css?raw";
 
-export const Route = createFileRoute("/termshtml-47f0e8934fe6baef")({
-  head: () => ({ meta: [{ title: "Terms \u0026 Conditions | Ank Darppan" }] }),
+export const Route = createFileRoute("/terms.html")({
+  head: () => ({ meta: [{"title": "Terms & Conditions | Ank Darppan"}, {"name": "description", "content": "Terms & Conditions for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:title", "content": "Terms & Conditions | Ank Darppan"}, {"property": "og:description", "content": "Terms & Conditions for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:type", "content": "website"}, {"name": "twitter:card", "content": "summary_large_image"}] }),
   staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
@@ -13,8 +13,8 @@ function Index() {
       <style>{capturedCSS}</style>
       <header className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) sticky top-0 z-5">
         <div className="wrap items-center flex gap-[12px] justify-between my-0 mx-auto max-w-[1140px] py-[12px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))]">
-          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/indexhtml-213456c5dc963e03">Ank Darppan</a>
-          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/indexhtml-213456c5dc963e03">← Back to Lal Kitab Report</a>
+          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/">Ank Darppan</a>
+          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/">← Back to Lal Kitab Report</a>
         </div>
       </header>
       <div className="hero [padding-block:48px_40px]">
@@ -23,11 +23,11 @@ function Index() {
           <h1 className="font-[family-name:var(--display)] text-[clamp(34px,5vw,50px)] font-normal leading-[1.2] mt-[12px] mr-0 mb-[8px] ml-0 text-balance">Terms &amp; Conditions</h1>
           <p className="m-0">For the Sampurna Lal Kitab Report sold at www.ankdarppan.com. Effective from 26 October 2026.</p>
           <nav className="tabs flex-wrap gap-[8px] mt-[22px]" aria-label="Policies">
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/contacthtml-030e61461fb49a1a">Contact Us</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/shippinghtml-c3277bad636a0d2c">Shipping &amp; Delivery</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/contact.html">Contact Us</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/shipping.html">Shipping &amp; Delivery</a>
             <a className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--foil) text-[15px] font-semibold py-[6px] px-[14px] no-underline" aria-current="page" href="#">Terms &amp; Conditions</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacyhtml-4e6462aac3987692">Privacy Policy</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refund.html">Refund &amp; Cancellation</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacy.html">Privacy Policy</a>
           </nav>
         </div>
       </div>
@@ -97,7 +97,7 @@ function Index() {
             </ol>
           </nav>
           <p className="updated text-[15px] max-w-[72ch]">Last updated: 26 October 2026</p>
-          <p className="max-w-[72ch]">These Terms &amp; Conditions ("Terms") apply to your use of www.ankdarppan.com (the "Website") and to any purchase of the Sampurna Lal Kitab Report from us. By placing an order you confirm that you have read and agree to these Terms, our <a href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation Policy</a> and our <a href="/privacyhtml-4e6462aac3987692">Privacy Policy</a>.</p>
+          <p className="max-w-[72ch]">These Terms &amp; Conditions ("Terms") apply to your use of www.ankdarppan.com (the "Website") and to any purchase of the Sampurna Lal Kitab Report from us. By placing an order you confirm that you have read and agree to these Terms, our <a href="/refund.html">Refund &amp; Cancellation Policy</a> and our <a href="/privacy.html">Privacy Policy</a>.</p>
           <section className="[scroll-margin-top:80px]" id="about">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">1.</span>About us</h2>
             <p className="max-w-[72ch]">The Website and the reports are operated by <b>Ank Darppan</b>, a proprietorship of Anamika Pathik, having its place of business at HNO 48, Near Gurudwara, Sunny Side, Solan, Himachal Pradesh 173212, India. "We", "us" and "our" refer to Ank Darppan. "You" refers to the person placing the order.</p>
@@ -182,7 +182,7 @@ function Index() {
           </section>
           <section className="[scroll-margin-top:80px]" id="refund">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">13.</span>No cancellation or refund</h2>
-            <p className="max-w-[72ch]">The Report is a personalised digital product. Orders cannot be cancelled and are not refundable once payment is made. Corrections and payment errors are handled as set out in our <a href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation Policy</a>.</p>
+            <p className="max-w-[72ch]">The Report is a personalised digital product. Orders cannot be cancelled and are not refundable once payment is made. Corrections and payment errors are handled as set out in our <a href="/refund.html">Refund &amp; Cancellation Policy</a>.</p>
           </section>
           <section className="[scroll-margin-top:80px]" id="changes">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">14.</span>Changes to these Terms</h2>
@@ -215,7 +215,7 @@ function Index() {
         </div>
       </main>
       <footer className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) text-[15px]">
-        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="/contacthtml-030e61461fb49a1a">Contact</a> · <a href="/shippinghtml-c3277bad636a0d2c">Delivery</a> · <a href="#">Terms</a> · <a href="/refundhtml-154ba115f4774285">Refunds</a> · <a href="/privacyhtml-4e6462aac3987692">Privacy</a></span></div>
+        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="/contact.html">Contact</a> · <a href="/shipping.html">Delivery</a> · <a href="#">Terms</a> · <a href="/refund.html">Refunds</a> · <a href="/privacy.html">Privacy</a></span></div>
       </footer>
     </>
   );
