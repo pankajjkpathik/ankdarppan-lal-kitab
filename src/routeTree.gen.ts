@@ -16,6 +16,7 @@ import { Route as PrivacyDothtmlRouteImport } from './routes/privacy[.]html'
 import { Route as RefundDothtmlRouteImport } from './routes/refund[.]html'
 import { Route as ShippingDothtmlRouteImport } from './routes/shipping[.]html'
 import { Route as TermsDothtmlRouteImport } from './routes/terms[.]html'
+import { Route as CheckoutConfirmationRouteImport } from './routes/checkout_.confirmation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const TermsDothtmlRoute = TermsDothtmlRouteImport.update({
   path: '/terms.html',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutConfirmationRoute = CheckoutConfirmationRouteImport.update({
+  id: '/checkout_/confirmation',
+  path: '/checkout/confirmation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/checkout_/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/refund.html'
     | '/shipping.html'
     | '/terms.html'
+    | '/checkout/confirmation'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/refund.html'
     | '/shipping.html'
     | '/terms.html'
+    | '/checkout/confirmation'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/refund.html'
     | '/shipping.html'
     | '/terms.html'
+    | '/checkout_/confirmation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   RefundDothtmlRoute: typeof RefundDothtmlRoute
   ShippingDothtmlRoute: typeof ShippingDothtmlRoute
   TermsDothtmlRoute: typeof TermsDothtmlRoute
+  CheckoutConfirmationRoute: typeof CheckoutConfirmationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout_/confirmation': {
+      id: '/checkout_/confirmation'
+      path: '/checkout/confirmation'
+      fullPath: '/checkout/confirmation'
+      preLoaderRoute: typeof CheckoutConfirmationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundDothtmlRoute: RefundDothtmlRoute,
   ShippingDothtmlRoute: ShippingDothtmlRoute,
   TermsDothtmlRoute: TermsDothtmlRoute,
+  CheckoutConfirmationRoute: CheckoutConfirmationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

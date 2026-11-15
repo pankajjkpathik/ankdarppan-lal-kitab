@@ -35,3 +35,5 @@ use the editor.
 - Store explicitly requested local fallback media in public/site-assets so unavailable source URLs are never required to display the page.
 - Keep checkout monetary calculations in a browser-safe integer-paise module with rule tests; payment execution must recalculate and verify on the server when connected.
 - Keep unconnected checkout submission non-transactional and explicit about unavailable payment; never send discounted orders to a fixed-price payment link.
+- Use Razorpay hosted payment links through the connected gateway, with server-priced integer amounts and API-fetched captured payment checks; callbacks alone never prove payment.
+- Authorize guest order reads and updates with a hashed per-order capability; keep birth data inaccessible through public database clients and clear it on delivery.
