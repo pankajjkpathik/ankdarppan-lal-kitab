@@ -1,0 +1,930 @@
+[
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 0",
+    "position": 1,
+    "expected": "\u0936\u0941\u092d\n\u0932\u093e\u092d\nPersonalised from your exact birth time\n\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0932\u093e\u0932 \u0915\u093f\u0924\u093e\u092c\nKnow why problems repeat, and the upay that ends them\n",
+    "height": 877,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-0.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 1",
+    "position": 855,
+    "expected": "65\npages, made for your chart alone\n29\nchapters of Lal Kitab analysis\n6\nkundli charts drawn\n9\ngrahas scored out of 100\n4",
+    "height": 139,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-1.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 2",
+    "position": 995,
+    "expected": "TRY IT: GRAHA FINDER\n\nWhich planet could be behind your problem?\n\nPick what is troubling you most. See which grahas Lal ",
+    "height": 720,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-2.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 3",
+    "position": 1713,
+    "expected": "WHAT YOUR REPORT TELLS YOU\n\nThe questions Lal Kitab answers better than any other system\n\nLal Kitab looks at why the sam",
+    "height": 986,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-3.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 4",
+    "position": 2780,
+    "expected": "LOOK INSIDE A REAL REPORT\n\nSee the pages before you buy\n\nThese are actual pages from a client's Sampurna Lal Kitab repor",
+    "height": 1977,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-4.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 5",
+    "position": 4687,
+    "expected": "INSIDE THE REPORT\n\n29 chapters, including\n1\nJanam Vivaran Birth details\n2\nJanam Hora Birth time planet & masnui\n3\nGrah S",
+    "height": 876,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-5.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 6",
+    "position": 5564,
+    "expected": "HOW IT WORKS\n\nThree steps to your report\nPay \u20b9941 securely\n\nPay with UPI, card, net banking or wallet through Razorpay.\n",
+    "height": 610,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-6.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 7",
+    "position": 6174,
+    "expected": "WHAT READERS SAY\n\nRead by families across India\nI had heard about pitru rin but never knew if I had it. The report showe",
+    "height": 857,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-7.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 8",
+    "position": 7020,
+    "expected": "SAMPURNA LAL KITAB REPORT\n\nStart with the remedy your chart needs most\n\nEverything in one personalised PDF, prepared fro",
+    "height": 599,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-8.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 9",
+    "position": 7020,
+    "expected": "QUESTIONS\n\nBefore you order\nWhat details do I need to give?\n\nYour full name, date of birth, exact time of birth, place o",
+    "height": 876,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-9.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "section 10",
+    "position": 7020,
+    "expected": "|| Jai Shri Ganesh || Jai Maa Durga || Jai Mahakal ||\n\nAnk Darppan\n9317365025\nankdarppan@gmail.com\nwww.ankdarppan.in\nCon",
+    "height": 236,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-desktop-section-10.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "all eight planet selectors",
+    "results": [
+      "Authority, status and hard work",
+      "Partnership and married life",
+      "Savings and expenses",
+      "Peace of mind and sleep",
+      "Disease and sudden trouble",
+      "Home, property and mother",
+      "Children and education",
+      "Rin: a carried-forward karmic debt"
+    ],
+    "status": "passed"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "viewer open/next/previous/close",
+    "status": "passed",
+    "image": "blocked: source images return 404"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "navigation and payment/WhatsApp destinations",
+    "status": "passed",
+    "links": [
+      {
+        "text": "Ank Darppan\nLal Kitab Reports",
+        "href": "#"
+      },
+      {
+        "text": "Get My Report \u00b7\n\u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Lal Kitab Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Check my own chart \u00b7 \u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Report Now",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Terms",
+        "href": "terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "privacy.html"
+      },
+      {
+        "text": "",
+        "href": "refund.html"
+      },
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "Contact Us",
+        "href": "contact.html"
+      },
+      {
+        "text": "Shipping & Delivery",
+        "href": "shipping.html"
+      },
+      {
+        "text": "Terms & Conditions",
+        "href": "terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "privacy.html"
+      },
+      {
+        "text": "",
+        "href": "https://wa.me/919317365025?text=Hi%2C%20I%20want%20the%20Sampurna%20Lal%20Kitab%20report"
+      },
+      {
+        "text": "Get My Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      }
+    ],
+    "note": "External checkout not submitted; five policy/contact pages not imported; no desktop dropdown or phone menu exists on source."
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "desktop",
+    "control": "reduced motion",
+    "animations": [],
+    "status": "observed"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 0",
+    "position": 0,
+    "expected": "\u0936\u0941\u092d\n\u0932\u093e\u092d\nPersonalised from your exact birth time\n\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0932\u093e\u0932 \u0915\u093f\u0924\u093e\u092c\nKnow why problems repeat, and the upay that ends them\n",
+    "height": 877,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-0.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 1",
+    "position": 855,
+    "expected": "65\npages, made for your chart alone\n29\nchapters of Lal Kitab analysis\n6\nkundli charts drawn\n9\ngrahas scored out of 100\n4",
+    "height": 139,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-1.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 2",
+    "position": 995,
+    "expected": "TRY IT: GRAHA FINDER\n\nWhich planet could be behind your problem?\n\nPick what is troubling you most. See which grahas Lal ",
+    "height": 699,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-2.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 3",
+    "position": 1693,
+    "expected": "WHAT YOUR REPORT TELLS YOU\n\nThe questions Lal Kitab answers better than any other system\n\nLal Kitab looks at why the sam",
+    "height": 986,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-3.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 4",
+    "position": 2759,
+    "expected": "LOOK INSIDE A REAL REPORT\n\nSee the pages before you buy\n\nThese are actual pages from a client's Sampurna Lal Kitab repor",
+    "height": 1977,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-4.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 5",
+    "position": 4667,
+    "expected": "INSIDE THE REPORT\n\n29 chapters, including\n1\nJanam Vivaran Birth details\n2\nJanam Hora Birth time planet & masnui\n3\nGrah S",
+    "height": 876,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-5.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 6",
+    "position": 5543,
+    "expected": "HOW IT WORKS\n\nThree steps to your report\nPay \u20b9941 securely\n\nPay with UPI, card, net banking or wallet through Razorpay.\n",
+    "height": 610,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-6.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 7",
+    "position": 6153,
+    "expected": "WHAT READERS SAY\n\nRead by families across India\nI had heard about pitru rin but never knew if I had it. The report showe",
+    "height": 857,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-7.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 8",
+    "position": 6999,
+    "expected": "SAMPURNA LAL KITAB REPORT\n\nStart with the remedy your chart needs most\n\nEverything in one personalised PDF, prepared fro",
+    "height": 599,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-8.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 9",
+    "position": 6999,
+    "expected": "QUESTIONS\n\nBefore you order\nWhat details do I need to give?\n\nYour full name, date of birth, exact time of birth, place o",
+    "height": 876,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-9.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "section 10",
+    "position": 6999,
+    "expected": "|| Jai Shri Ganesh || Jai Maa Durga || Jai Mahakal ||\n\nAnk Darppan\n9317365025\nankdarppan@gmail.com\nwww.ankdarppan.in\nCon",
+    "height": 236,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-desktop-section-10.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "all eight planet selectors",
+    "results": [
+      "Authority, status and hard work",
+      "Partnership and married life",
+      "Savings and expenses",
+      "Peace of mind and sleep",
+      "Disease and sudden trouble",
+      "Home, property and mother",
+      "Children and education",
+      "Rin: a carried-forward karmic debt"
+    ],
+    "status": "passed"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "viewer open/next/previous/close",
+    "status": "passed",
+    "image": "blocked: source images return 404"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "navigation and payment/WhatsApp destinations",
+    "status": "passed",
+    "links": [
+      {
+        "text": "Ank Darppan\nLal Kitab Reports",
+        "href": "#"
+      },
+      {
+        "text": "Get My Report \u00b7\n\u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Lal Kitab Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Check my own chart \u00b7 \u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Report Now",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Terms",
+        "href": "/terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy.html"
+      },
+      {
+        "text": "",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "Contact Us",
+        "href": "/contact.html"
+      },
+      {
+        "text": "Shipping & Delivery",
+        "href": "/shipping.html"
+      },
+      {
+        "text": "Terms & Conditions",
+        "href": "/terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy.html"
+      },
+      {
+        "text": "",
+        "href": "https://wa.me/919317365025?text=Hi%2C%20I%20want%20the%20Sampurna%20Lal%20Kitab%20report"
+      },
+      {
+        "text": "Get My Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      }
+    ],
+    "note": "External checkout not submitted; five policy/contact pages not imported; no desktop dropdown or phone menu exists on source."
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "desktop",
+    "control": "reduced motion",
+    "animations": [],
+    "status": "observed"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 0",
+    "position": 58,
+    "expected": "Personalised from your exact birth time\n\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0932\u093e\u0932 \u0915\u093f\u0924\u093e\u092c\nKnow why problems repeat, and the upay that ends them\n\nA 65-pa",
+    "height": 1210,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-0.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 1",
+    "position": 1188,
+    "expected": "65\npages, made for your chart alone\n29\nchapters of Lal Kitab analysis\n6\nkundli charts drawn\n9\ngrahas scored out of 100\n4",
+    "height": 284,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-1.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 2",
+    "position": 1552,
+    "expected": "TRY IT: GRAHA FINDER\n\nWhich planet could be behind your problem?\n\nPick what is troubling you most. See which grahas Lal ",
+    "height": 1309,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-2.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 3",
+    "position": 2861,
+    "expected": "WHAT YOUR REPORT TELLS YOU\n\nThe questions Lal Kitab answers better than any other system\n\nLal Kitab looks at why the sam",
+    "height": 2255,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-3.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 4",
+    "position": 5115,
+    "expected": "LOOK INSIDE A REAL REPORT\n\nSee the pages before you buy\n\nThese are actual pages from a client's Sampurna Lal Kitab repor",
+    "height": 5230,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-4.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 5",
+    "position": 10355,
+    "expected": "INSIDE THE REPORT\n\n29 chapters, including\n1\nJanam Vivaran Birth details\n2\nJanam Hora Birth time planet & masnui\n3\nGrah S",
+    "height": 1596,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-5.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 6",
+    "position": 11951,
+    "expected": "HOW IT WORKS\n\nThree steps to your report\nPay \u20b9941 securely\n\nPay with UPI, card, net banking or wallet through Razorpay.\n",
+    "height": 1189,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-6.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 7",
+    "position": 13140,
+    "expected": "WHAT READERS SAY\n\nRead by families across India\nI had heard about pitru rin but never knew if I had it. The report showe",
+    "height": 2074,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-7.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 8",
+    "position": 15214,
+    "expected": "SAMPURNA LAL KITAB REPORT\n\nStart with the remedy your chart needs most\n\nEverything in one personalised PDF, prepared fro",
+    "height": 1168,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-8.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 9",
+    "position": 16382,
+    "expected": "QUESTIONS\n\nBefore you order\nWhat details do I need to give?\n\nYour full name, date of birth, exact time of birth, place o",
+    "height": 941,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-9.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "section 10",
+    "position": 16962,
+    "expected": "|| Jai Shri Ganesh || Jai Maa Durga || Jai Mahakal ||\n\nAnk Darppan\n9317365025\nankdarppan@gmail.com\nwww.ankdarppan.in\nCon",
+    "height": 484,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-source-phone-section-10.png"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "all eight planet selectors",
+    "results": [
+      "Authority, status and hard work",
+      "Partnership and married life",
+      "Savings and expenses",
+      "Peace of mind and sleep",
+      "Disease and sudden trouble",
+      "Home, property and mother",
+      "Children and education",
+      "Rin: a carried-forward karmic debt"
+    ],
+    "status": "passed"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "viewer open/next/previous/close",
+    "status": "passed",
+    "image": "blocked: source images return 404"
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "navigation and payment/WhatsApp destinations",
+    "status": "passed",
+    "links": [
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "\u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Lal Kitab Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Check my own chart \u00b7 \u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Report Now",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Terms",
+        "href": "terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "privacy.html"
+      },
+      {
+        "text": "",
+        "href": "refund.html"
+      },
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "Contact Us",
+        "href": "contact.html"
+      },
+      {
+        "text": "Shipping & Delivery",
+        "href": "shipping.html"
+      },
+      {
+        "text": "Terms & Conditions",
+        "href": "terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "privacy.html"
+      },
+      {
+        "text": "",
+        "href": "https://wa.me/919317365025?text=Hi%2C%20I%20want%20the%20Sampurna%20Lal%20Kitab%20report"
+      },
+      {
+        "text": "Get My Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      }
+    ],
+    "note": "External checkout not submitted; five policy/contact pages not imported; no desktop dropdown or phone menu exists on source."
+  },
+  {
+    "route": "/",
+    "page": "source",
+    "viewport": "phone",
+    "control": "reduced motion",
+    "animations": [],
+    "status": "observed"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 0",
+    "position": 0,
+    "expected": "Personalised from your exact birth time\n\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0932\u093e\u0932 \u0915\u093f\u0924\u093e\u092c\nKnow why problems repeat, and the upay that ends them\n\nA 65-pa",
+    "height": 1210,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-0.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 1",
+    "position": 1188,
+    "expected": "65\npages, made for your chart alone\n29\nchapters of Lal Kitab analysis\n6\nkundli charts drawn\n9\ngrahas scored out of 100\n4",
+    "height": 284,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-1.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 2",
+    "position": 1552,
+    "expected": "TRY IT: GRAHA FINDER\n\nWhich planet could be behind your problem?\n\nPick what is troubling you most. See which grahas Lal ",
+    "height": 1288,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-2.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 3",
+    "position": 2840,
+    "expected": "WHAT YOUR REPORT TELLS YOU\n\nThe questions Lal Kitab answers better than any other system\n\nLal Kitab looks at why the sam",
+    "height": 2255,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-3.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 4",
+    "position": 5095,
+    "expected": "LOOK INSIDE A REAL REPORT\n\nSee the pages before you buy\n\nThese are actual pages from a client's Sampurna Lal Kitab repor",
+    "height": 5230,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-4.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 5",
+    "position": 10334,
+    "expected": "INSIDE THE REPORT\n\n29 chapters, including\n1\nJanam Vivaran Birth details\n2\nJanam Hora Birth time planet & masnui\n3\nGrah S",
+    "height": 1596,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-5.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 6",
+    "position": 11930,
+    "expected": "HOW IT WORKS\n\nThree steps to your report\nPay \u20b9941 securely\n\nPay with UPI, card, net banking or wallet through Razorpay.\n",
+    "height": 1189,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-6.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 7",
+    "position": 13119,
+    "expected": "WHAT READERS SAY\n\nRead by families across India\nI had heard about pitru rin but never knew if I had it. The report showe",
+    "height": 2074,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-7.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 8",
+    "position": 15193,
+    "expected": "SAMPURNA LAL KITAB REPORT\n\nStart with the remedy your chart needs most\n\nEverything in one personalised PDF, prepared fro",
+    "height": 1168,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-8.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 9",
+    "position": 16361,
+    "expected": "QUESTIONS\n\nBefore you order\nWhat details do I need to give?\n\nYour full name, date of birth, exact time of birth, place o",
+    "height": 941,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-9.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "section 10",
+    "position": 16941,
+    "expected": "|| Jai Shri Ganesh || Jai Maa Durga || Jai Mahakal ||\n\nAnk Darppan\n9317365025\nankdarppan@gmail.com\nwww.ankdarppan.in\nCon",
+    "height": 484,
+    "status": "passed",
+    "evidence": "/tmp/browser/lalkitab/final-preview-phone-section-10.png"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "all eight planet selectors",
+    "results": [
+      "Authority, status and hard work",
+      "Partnership and married life",
+      "Savings and expenses",
+      "Peace of mind and sleep",
+      "Disease and sudden trouble",
+      "Home, property and mother",
+      "Children and education",
+      "Rin: a carried-forward karmic debt"
+    ],
+    "status": "passed"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "viewer open/next/previous/close",
+    "status": "passed",
+    "image": "blocked: source images return 404"
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "navigation and payment/WhatsApp destinations",
+    "status": "passed",
+    "links": [
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "\u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Lal Kitab Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Check my own chart \u00b7 \u20b9941",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Get My Report Now",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      },
+      {
+        "text": "Terms",
+        "href": "/terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy.html"
+      },
+      {
+        "text": "",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Ank Darppan",
+        "href": "#"
+      },
+      {
+        "text": "Contact Us",
+        "href": "/contact.html"
+      },
+      {
+        "text": "Shipping & Delivery",
+        "href": "/shipping.html"
+      },
+      {
+        "text": "Terms & Conditions",
+        "href": "/terms.html"
+      },
+      {
+        "text": "Refund Policy",
+        "href": "/refund.html"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy.html"
+      },
+      {
+        "text": "",
+        "href": "https://wa.me/919317365025?text=Hi%2C%20I%20want%20the%20Sampurna%20Lal%20Kitab%20report"
+      },
+      {
+        "text": "Get My Report",
+        "href": "https://rzp.io/rzp/lalkitabreport"
+      }
+    ],
+    "note": "External checkout not submitted; five policy/contact pages not imported; no desktop dropdown or phone menu exists on source."
+  },
+  {
+    "route": "/",
+    "page": "preview",
+    "viewport": "phone",
+    "control": "reduced motion",
+    "animations": [],
+    "status": "observed"
+  }
+]
