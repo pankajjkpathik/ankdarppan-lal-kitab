@@ -3,7 +3,7 @@ import capturedCSS from "../styles/pages/contact.html.css?raw";
 
 export const Route = createFileRoute("/contact.html")({
   head: () => ({ meta: [{ title: "Contact Us | Ank Darppan" }, { name: "description", content: "Contact Ank Darppan for Lal Kitab report orders, corrections and delivery support." }, { property: "og:title", content: "Contact Us | Ank Darppan" }, { property: "og:description", content: "Contact Ank Darppan for Lal Kitab report orders, corrections and delivery support." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
-  staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
+  staticData: { sitemap: true, importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 

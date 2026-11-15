@@ -3,7 +3,7 @@ import capturedCSS from "../styles/pages/shipping.html.css?raw";
 
 export const Route = createFileRoute("/shipping.html")({
   head: () => ({ meta: [{"title": "Shipping & Delivery Policy | Ank Darppan"}, {"name": "description", "content": "Shipping & Delivery Policy for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:title", "content": "Shipping & Delivery Policy | Ank Darppan"}, {"property": "og:description", "content": "Shipping & Delivery Policy for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:type", "content": "website"}, {"name": "twitter:card", "content": "summary_large_image"}] }),
-  staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
+  staticData: { sitemap: true, importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 

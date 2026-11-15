@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
-  staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
+  staticData: { sitemap: true, importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 

@@ -15,6 +15,7 @@ export const Route = createFileRoute('/checkout_/confirmation')({
     ...(typeof search['order'] === 'string' ? { order: search['order'] } : {}),
     ...(typeof search['token'] === 'string' ? { token: search['token'] } : {}),
   }),
+  staticData: { sitemap: false },
   head: () => ({ meta: [
     { title: 'Report Payment Confirmation | Ank Darppan' },
     { name: 'description', content: 'Secure payment confirmation for your personalised Ank Darppan Lal Kitab report.' },
