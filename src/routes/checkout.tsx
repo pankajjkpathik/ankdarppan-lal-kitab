@@ -1,11 +1,11 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { ArrowLeft, ArrowRight, LockKeyhole, ShieldCheck, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { calculateReportPrice, CHECKOUT_COUPONS, formatINR, REPORT_PRICE_PAISE } from '@/lib/checkout-pricing';
 import checkoutCSS from '@/styles/pages/checkout.css?raw';
-import { createReportPayment } from '@/lib/report-orders.functions';
+import { createReportPayment, checkSocialEligibility } from '@/lib/report-orders.functions';
 import { reportOrderSchema } from '@/lib/report-order-schema';
 
 export const Route = createFileRoute('/checkout')({
@@ -28,19 +28,40 @@ function Checkout() {
   const [busy, setBusy] = useState(false);
   const [paymentError, setPaymentError] = useState('');
   const createPayment = useServerFn(createReportPayment);
+  const checkEligibility = useServerFn(checkSocialEligibility);
+  const started = useRef(false);
+  const [facebookId, setFacebookId] = useState('');
+  const [claimedStatus, setClaimedStatus] = useState('neither');
+  const [verifiedCode, setVerifiedCode] = useState('');
+  const [verificationBusy, setVerificationBusy] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState('');
   const price = calculateReportPrice(couponCode);
+  const total = verifiedCode === couponCode && couponCode ? price.total : REPORT_PRICE_PAISE;
   function applyCoupon(code: string) {
     const next = calculateReportPrice(code);
     if (!next.coupon) { setCouponError('This coupon is not valid. Please check the code.'); return; }
     setCouponCode(next.coupon.code); setCouponInput(next.coupon.code); setCouponError(''); setPaymentError('');
+    setVerifiedCode(''); setVerificationMessage('Verify your Facebook status to receive this discount.');
+    window.__lovableEvents?.track?.('project.coupon_selected', { coupon: next.coupon.code });
+  }
+  async function verifyStatus() {
+    if (!price.coupon || !facebookId.trim()) { setVerificationMessage('Enter your Facebook ID and select a coupon first.'); return; }
+    setVerificationBusy(true);
+    try {
+      const result = await checkEligibility({ data: { facebookId, coupon: price.coupon.code } });
+      setVerifiedCode(result.verified ? price.coupon.code : '');
+      setVerificationMessage(result.verified ? 'Status verified. Your discount is active.' : 'Status is not verified. Full payment of ₹941 is required for your report. Contact us for Facebook review.');
+    } catch { setVerifiedCode(''); setVerificationMessage('Verification could not be completed. Full payment of ₹941 is required.'); }
+    finally { setVerificationBusy(false); }
   }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
     const form = new FormData(event.currentTarget);
-    const parsed = reportOrderSchema.safeParse({ ...Object.fromEntries(form), approximate, coupon: couponCode });
+    const parsed = reportOrderSchema.safeParse({ ...Object.fromEntries(form), approximate, coupon: verifiedCode === couponCode ? couponCode : '', facebookId, claimedStatus });
     if (!parsed.success) { setPaymentError('Please check your birth details and contact information.'); return; }
     setBusy(true); setPaymentError('');
+    window.__lovableEvents?.track?.('project.payment_attempted', { amount_paise: total, coupon: verifiedCode || 'none' });
     try {
       const payment = await createPayment({ data: parsed.data });
       window.location.assign(payment.paymentUrl);
@@ -58,7 +79,7 @@ function Checkout() {
     <main className="checkout-main">
       <Link to="/" className="checkout-back"><ArrowLeft size={16} /> Back to report</Link>
       <div className="checkout-heading"><h1>Your Sampurna Lal Kitab Report</h1><p>Aapki kundli. Aapka remedy plan.</p></div>
-      <form id="report-order" onSubmit={submit} aria-busy={busy}>
+      <form id="report-order" onSubmit={submit} aria-busy={busy} onFocusCapture={() => { if (!started.current) { started.current = true; window.__lovableEvents?.track?.('project.checkout_started', {}); } }}>
         <fieldset disabled={busy} className="contents">
         <div className="checkout-layout">
           <div>
@@ -74,6 +95,9 @@ function Checkout() {
                 <div className="checkout-field"><label htmlFor="birth-time">Time of Birth <span className="checkout-required">*</span></label><input id="birth-time" name="birthTime" type="time" required /><label className="checkout-unknown"><input type="checkbox" checked={approximate} onChange={event => setApproximate(event.target.checked)} /> My birth time is approximate</label>{approximate && <small>We will need to confirm your time before preparing the report.</small>}</div>
                 <div className="checkout-field checkout-wide"><label htmlFor="language">Report Language <span className="checkout-required">*</span></label><select id="language" name="language"><option>English with Hindi terms</option></select></div>
                 <div className="checkout-field"><label htmlFor="email">Email Address <span className="checkout-required">*</span></label><input id="email" name="email" type="email" autoComplete="email" placeholder="email@example.com" required /></div>
+                <div className="checkout-field"><label htmlFor="focus">Reading Focus</label><select id="focus" name="focus"><option>General guidance</option><option>Career</option><option>Relationships</option><option>Family</option><option>Financial habits</option></select></div>
+                <div className="checkout-field"><label htmlFor="claimed-status">Are you a follower or subscriber?</label><select id="claimed-status" value={claimedStatus} onChange={event => { setClaimedStatus(event.target.value); setVerifiedCode(''); }}><option value="neither">Neither</option><option value="follower">Facebook follower</option><option value="subscriber">Facebook subscriber</option></select></div>
+                <div className="checkout-field"><label htmlFor="facebook-id">Facebook ID / username</label><input id="facebook-id" value={facebookId} maxLength={100} placeholder="Your Facebook ID or username" onChange={event => { setFacebookId(event.target.value); setVerifiedCode(''); }} /><small>Claims need review. Unverified orders require ₹941.</small></div>
               </div>
               <p className="checkout-terms">By clicking “Pay Now”, I agree to the <Link to="/terms.html">Terms and Conditions</Link> and <Link to="/privacy.html">Privacy Policy</Link>.</p>
             </section>
@@ -85,8 +109,9 @@ function Checkout() {
             {price.coupon && <div className="checkout-coupon-row checkout-message checkout-success" role="status"><span>{price.coupon.code} applied</span><Button type="button" variant="ghost" size="icon" aria-label="Remove coupon" onClick={() => { setCouponCode(''); setCouponInput(''); setPaymentError(''); }}><X /></Button></div>}
             <p className="checkout-coupon-label">Available Coupons</p>
             {CHECKOUT_COUPONS.map(coupon => <div className="checkout-coupon" key={coupon.code}><div className="checkout-coupon-row"><strong>{coupon.code}</strong><Button type="button" variant="ghost" size="sm" onClick={() => applyCoupon(coupon.code)} aria-label={`Apply ${coupon.code}`}>{couponCode === coupon.code ? 'Applied' : 'Apply'}</Button></div><p>Flat {coupon.percent}% off · No expiry</p></div>)}
-            <section className="checkout-summary"><h2>Payment Summary</h2><dl><div><dt>Package price</dt><dd>{formatINR(REPORT_PRICE_PAISE)}</dd></div>{price.coupon && <div className="checkout-success"><dt>Coupon discount ({price.coupon.percent}%)</dt><dd>−{formatINR(price.discount)}</dd></div>}<div className="checkout-total"><dt>Total Payable</dt><dd data-testid="checkout-total" aria-live="polite">{formatINR(price.total)}</dd></div></dl>
-              <Button type="submit" disabled={busy} className="checkout-gold checkout-pay">{busy ? 'Opening secure payment…' : `Pay Now · ${formatINR(price.total)}`} <ArrowRight /></Button>
+            {couponCode && <><Button type="button" variant="outline" disabled={verificationBusy} onClick={() => void verifyStatus()}>{verificationBusy ? 'Checking…' : 'Verify Facebook status'}</Button><p className="checkout-message" role="status">{verificationMessage}</p><a href="https://wa.me/919317365025?text=FACEBOOK_STATUS_REVIEW" target="_blank" rel="noopener noreferrer">Request status review</a></>}
+            <section className="checkout-summary"><h2>Payment Summary</h2><dl><div><dt>Package price</dt><dd>{formatINR(REPORT_PRICE_PAISE)}</dd></div>{price.coupon && verifiedCode === couponCode && <div className="checkout-success"><dt>Coupon discount ({price.coupon.percent}%)</dt><dd>−{formatINR(price.discount)}</dd></div>}<div className="checkout-total"><dt>Total Payable</dt><dd data-testid="checkout-total" aria-live="polite">{formatINR(total)}</dd></div></dl>
+              <Button type="submit" disabled={busy} className="checkout-gold checkout-pay">{busy ? 'Opening secure payment…' : `Pay Now · ${formatINR(total)}`} <ArrowRight /></Button>
               <p className="checkout-methods"><ShieldCheck size={14} /> Secure payment by Razorpay</p>
               {paymentError && <div className="checkout-payment-notice checkout-error" role="alert">{paymentError}<br /><a href="https://wa.me/919317365025?text=LAL_KITAB_PAYMENT_HELP" target="_blank" rel="noopener noreferrer">Contact on WhatsApp <ArrowRight size={16} /></a></div>}
             </section>
