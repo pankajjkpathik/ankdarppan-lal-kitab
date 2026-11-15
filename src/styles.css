@@ -239,3 +239,18 @@
   --input: oklch(0.85 0.04 82);
   --ring: var(--checkout-gold);
 }
+
+.report-hero { background: var(--checkout-navy); color: var(--checkout-on-navy); overflow: hidden; text-align: center; }
+.report-hero-inner { max-width: 960px; margin: auto; padding: 58px 24px 36px; }
+.report-hero-brand { font: 500 12px/1.6 var(--font-checkout-body); color: var(--checkout-marigold); margin: 0 0 14px; }
+.report-hero h1 { font: 500 42px/1.25 var(--font-checkout-display); margin: 0; color: var(--checkout-on-navy); }
+.report-hero-hindi { font-size: 23px; color: var(--checkout-marigold); margin: 12px 0; }
+.report-hero-intro { font: 400 14px/1.8 var(--font-checkout-body); max-width: 650px; margin: 0 auto; }
+.report-hero-spread { position: relative; height: 278px; max-width: 500px; margin: 26px auto 18px; }
+.report-hero-spread img { position: absolute; height: 248px; width: 175px; object-fit: cover; border: 1px solid var(--checkout-gold); }
+.report-hero-spread .report-page-cover { height: 275px; width: 194px; left: calc(50% - 97px); top: 0; z-index: 2; }
+.report-page-left { left: 5%; top: 18px; transform: rotate(-12deg); }
+.report-page-right { right: 5%; top: 18px; transform: rotate(12deg); }
+.report-hero .report-hero-buy { min-height: 48px; height: auto; padding: 12px 22px; background: var(--gradient-gold); color: var(--checkout-navy); font: 600 14px/1.6 var(--font-checkout-body); border-radius: 8px; }
+.report-hero-delivery { font: 400 11px/1.7 var(--font-checkout-body); margin: 14px 0 0; }
+@media(max-width:640px) { .report-hero-inner { padding: 46px 16px 28px; } .report-hero h1 { font-size: 30px; } .report-hero-hindi { font-size: 19px; } .report-hero-intro { font-size: 12px; } .report-hero-spread { height: 220px; max-width: 330px; } .report-hero-spread img { height: 193px; width: 136px; } .report-hero-spread .report-page-cover { height: 214px; width: 151px; left: calc(50% - 75.5px); } }
