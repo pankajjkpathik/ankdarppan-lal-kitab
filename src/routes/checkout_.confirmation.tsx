@@ -10,8 +10,8 @@ import checkoutCSS from '@/styles/pages/checkout.css?raw';
 
 export const Route = createFileRoute('/checkout_/confirmation')({
   validateSearch: (search: Record<string, unknown>): { order?: string; token?: string } => ({
-    order: typeof search.order === 'string' ? search.order : undefined,
-    token: typeof search.token === 'string' ? search.token : undefined,
+    ...(typeof search['order'] === 'string' ? { order: search['order'] } : {}),
+    ...(typeof search['token'] === 'string' ? { token: search['token'] } : {}),
   }),
   head: () => ({ meta: [
     { title: 'Report Payment Confirmation | Ank Darppan' },

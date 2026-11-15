@@ -6,6 +6,7 @@ const paid = { id: 'plink_123', reference_id: 'private-order', currency: 'INR', 
 describe('Secure payment confirmation', () => {
   it('confirms only fully captured payment for the saved order', () => expect(verifiedPayment(paid, order)).toBe('pay_123'));
   it('rejects a browser-claimed paid status without captured funds', () => expect(verifiedPayment({ ...paid, payments: [] }, order)).toBeNull());
+  it('handles unpaid links with null payments safely', () => expect(verifiedPayment({ ...paid, status: 'created', payments: null }, order)).toBeNull());
   it('rejects incorrect discounted amounts', () => expect(verifiedPayment({ ...paid, amount: 94100 }, order)).toBeNull());
   it('rejects partial payments', () => expect(verifiedPayment({ ...paid, amount_paid: 100 }, order)).toBeNull());
   it('rejects a payment for another order', () => expect(verifiedPayment({ ...paid, reference_id: 'other' }, order)).toBeNull());

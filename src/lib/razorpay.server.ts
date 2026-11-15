@@ -5,7 +5,7 @@ export const paymentLinkSchema = z.object({
   reference_id: z.string().optional(),
   amount: z.number().int(), amount_paid: z.number().int().optional(), currency: z.string(), status: z.string(),
   short_url: z.string().url().optional(),
-  payments: z.array(z.object({ payment_id: z.string(), amount: z.number().int(), status: z.string() })).optional(),
+  payments: z.array(z.object({ payment_id: z.string(), amount: z.number().int(), status: z.string() })).nullish(),
 });
 
 export async function razorpayRequest(path: string, body?: unknown) {
@@ -15,7 +15,7 @@ export async function razorpayRequest(path: string, body?: unknown) {
   const response = await fetch(`https://connector-gateway.lovable.dev/udc_razorpay${path}`, {
     method: body ? 'POST' : 'GET',
     headers: { Authorization: `Bearer ${key}`, 'X-Connection-Api-Key': connectionKey, 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
+    body: body ? JSON.stringify(body) : null,
   });
   if (!response.ok) {
     const errorBody = await response.text();

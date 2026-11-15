@@ -18,7 +18,7 @@ export const reportOrderSchema = z.object({
 export const orderAccessSchema = z.object({ order: z.string().uuid(), token: z.string().regex(/^[a-f0-9]{64}$/) });
 export type ReportOrderInput = z.infer<typeof reportOrderSchema>;
 
-export function verifiedPayment(link: { id: string; reference_id?: string; amount: number; amount_paid?: number; currency: string; status: string; payments?: { payment_id: string; amount: number; status: string }[] }, order: { id: string; razorpay_link_id: string | null; amount_paise: number }) {
+export function verifiedPayment(link: { id: string; reference_id?: string | undefined; amount: number; amount_paid?: number | undefined; currency: string; status: string; payments?: { payment_id: string; amount: number; status: string }[] | null | undefined }, order: { id: string; razorpay_link_id: string | null; amount_paise: number }) {
   if (link.id !== order.razorpay_link_id || link.reference_id !== order.id || link.currency !== 'INR' || link.amount !== order.amount_paise || link.amount_paid !== order.amount_paise || link.status !== 'paid') return null;
   return link.payments?.find(payment => payment.status === 'captured' && payment.amount === order.amount_paise)?.payment_id ?? null;
 }
