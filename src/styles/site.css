@@ -559,6 +559,7 @@ header.top .wrap {
 }
 
 .chip {
+  background: var(--card);
   color: var(--ink);
   border: 1.5px solid var(--rule);
   border-radius: 12px;
@@ -569,6 +570,7 @@ header.top .wrap {
 .chip .ic{color:var(--foil)}
 .chip:hover{border-color:var(--foil)}
 .chip[aria-pressed="true"] {
+  background: var(--sindoor);
   border-color: var(--sindoor);
   color: #fff3dc;
 }
