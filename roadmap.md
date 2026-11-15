@@ -1,4 +1,7 @@
 ## Website import
+- [ ] Track checkout starts, coupon selections, payment attempts and verified completed orders.
+- [ ] Collect Facebook ID and follower/subscriber claims; require full price when verification is absent or fails.
+- [ ] Add a payment-gated personalised AI reading with remedies using AI Gateway and verify available paths.
 - [x] Refresh the report presentation using the Astro Arun reference while preserving Ank Darppan content.
 - [x] Verify the screenshot-inspired checkout with birth details, coupon choices and a payment summary on desktop and phone.
 - [x] Import the supplied home page.
