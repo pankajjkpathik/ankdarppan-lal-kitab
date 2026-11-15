@@ -437,7 +437,7 @@ function ImportedSectionWhichPlanetCouldBe() {
             <p className="lbl tracking-[.14em] m-0 mt-[16px]! relative uppercase z-1 [font:600_12px/1_var(--body)]" id="r-house">{result.house}</p>
             <h3 className="font-[family-name:var(--display)] text-[28px] font-normal leading-[1.15] m-0 mt-[10px]! text-balance" id="r-title">{result.title}</h3>
             <div className="gbadges flex-wrap gap-[10px] mt-[16px]" id="r-badges">
-              {result.badges.map(([symbol, name]) => <span className="gb" key={name}><b>{symbol}</b><span>{name}</span></span>)}
+              {result.badges.map(([symbol, name]) => <span className="gb items-center gap-[10px] pt-[6px] pr-[14px] pb-[6px] pl-[6px]" key={name}><b className="bg-(--foil) h-[36px] place-items-center w-[36px] [font:600_15px/1_var(--body)]">{symbol}</b><span className="font-semibold">{name}</span></span>)}
             </div>
             <p className="m-0 mt-[16px]! relative z-1" id="r-text">{result.text}</p>
             <a className={"buy items-center cursor-pointer gap-[10px] justify-center mt-[22px] overflow-hidden py-[17px] px-[28px] no-underline z-1 [font:700_18px/1_var(--body)] [&:hover]:[filter:brightness(1.07)]"} href="https://rzp.io/rzp/lalkitabreport" rel="noopener" target="_blank">Check my own chart · ₹941 <svg className="ic fill-none flex-none h-[18px] stroke-current w-[18px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-arrow" } as any)} /></svg></a>
