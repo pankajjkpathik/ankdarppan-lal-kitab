@@ -6,4 +6,5 @@
 - [x] Restore the ten images using the supplied local files and verify the gallery.
 - [x] Import and verify Contact, Shipping, Terms, Refund, and Privacy pages.
 - [x] Connect the requested Razorpay account and verify the app credential path.
-- [ ] Verify Razorpay hosted payment creation and server-verified coupon order confirmation end to end.
+- [x] Create securely priced Razorpay hosted payments; verify ₹470.50 checkout, real saved pending-order readback, invalid-token denial and payment verification tests.
+- [ ] Verify a completed payment and successful customer return — requires a customer-authorized payment; no real charge was made during testing.
