@@ -14,6 +14,9 @@ export const reportOrderSchema = z.object({
   language: z.literal('English with Hindi terms'),
   email: z.string().trim().email().max(254),
   coupon: z.string().trim().max(30),
+  facebookId: z.string().trim().max(100).regex(/^[a-zA-Z0-9._-]*$/).default(''),
+  claimedStatus: z.enum(['neither', 'follower', 'subscriber']).default('neither'),
+  focus: z.enum(['General guidance', 'Career', 'Relationships', 'Family', 'Financial habits']).default('General guidance'),
 });
 export const orderAccessSchema = z.object({ order: z.string().uuid(), token: z.string().regex(/^[a-f0-9]{64}$/) });
 export type ReportOrderInput = z.infer<typeof reportOrderSchema>;

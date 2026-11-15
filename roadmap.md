@@ -1,4 +1,9 @@
 ## Website import
+- [x] Track checkout starts, coupon selections, payment attempts and verified completed orders; four registered schemas validated.
+- [x] Collect Facebook ID and follower/subscriber claims; protected reviewed records grant discounts, otherwise require ₹941.
+- [x] Add paid-customer AI reading generation and saved remedies; model tested with fictional birth data, payment gate covered by tests.
+- [ ] Verify paid-customer AI reading end to end — awaits a real verified paid order; no payment was fabricated or charged.
+- [ ] Populate verified Facebook eligibility after owner review — awaits actual reviewed Facebook IDs; IDs alone are not proof of follower/subscriber status.
 - [x] Refresh the report presentation using the Astro Arun reference while preserving Ank Darppan content.
 - [x] Verify the screenshot-inspired checkout with birth details, coupon choices and a payment summary on desktop and phone.
 - [x] Import the supplied home page.
