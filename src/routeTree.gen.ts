@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactDothtmlRouteImport } from './routes/contact[.]html'
 import { Route as PrivacyDothtmlRouteImport } from './routes/privacy[.]html'
 import { Route as RefundDothtmlRouteImport } from './routes/refund[.]html'
@@ -19,6 +20,11 @@ import { Route as TermsDothtmlRouteImport } from './routes/terms[.]html'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactDothtmlRoute = ContactDothtmlRouteImport.update({
@@ -49,6 +55,7 @@ const TermsDothtmlRoute = TermsDothtmlRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/checkout'
     | '/contact.html'
     | '/privacy.html'
     | '/refund.html'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/checkout'
     | '/contact.html'
     | '/privacy.html'
     | '/refund.html'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/checkout'
     | '/contact.html'
     | '/privacy.html'
     | '/refund.html'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactDothtmlRoute: typeof ContactDothtmlRoute
   PrivacyDothtmlRoute: typeof PrivacyDothtmlRoute
   RefundDothtmlRoute: typeof RefundDothtmlRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact.html': {
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactDothtmlRoute: ContactDothtmlRoute,
   PrivacyDothtmlRoute: PrivacyDothtmlRoute,
   RefundDothtmlRoute: RefundDothtmlRoute,

@@ -33,3 +33,5 @@ use the editor.
 - Preserve unimported same-site link paths on the preview origin; import additional pages only when requested.
 - Use escaped-dot route filenames for imported .html addresses and keep each page stylesheet alongside its original styling to preserve direct links.
 - Store explicitly requested local fallback media in public/site-assets so unavailable source URLs are never required to display the page.
+- Keep checkout monetary calculations in a browser-safe integer-paise module with rule tests; payment execution must recalculate and verify on the server when connected.
+- Keep unconnected checkout submission non-transactional and explicit about unavailable payment; never send discounted orders to a fixed-price payment link.
