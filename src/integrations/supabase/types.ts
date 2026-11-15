@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      report_orders: {
+        Row: {
+          access_hash: string
+          amount_paise: number
+          coupon_code: string | null
+          created_at: string
+          currency: string
+          delivered_at: string | null
+          details: Json | null
+          id: string
+          paid_at: string | null
+          razorpay_link_id: string | null
+          razorpay_payment_id: string | null
+          status: string
+        }
+        Insert: {
+          access_hash: string
+          amount_paise: number
+          coupon_code?: string | null
+          created_at?: string
+          currency?: string
+          delivered_at?: string | null
+          details?: Json | null
+          id: string
+          paid_at?: string | null
+          razorpay_link_id?: string | null
+          razorpay_payment_id?: string | null
+          status?: string
+        }
+        Update: {
+          access_hash?: string
+          amount_paise?: number
+          coupon_code?: string | null
+          created_at?: string
+          currency?: string
+          delivered_at?: string | null
+          details?: Json | null
+          id?: string
+          paid_at?: string | null
+          razorpay_link_id?: string | null
+          razorpay_payment_id?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
