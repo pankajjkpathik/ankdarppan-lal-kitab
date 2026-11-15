@@ -424,6 +424,7 @@ const samplePages = [
 function ImportedSectionWhichPlanetCouldBe() {
   const [selected, setSelected] = useState(0);
   const result = finderResults[selected] ?? finderResults[0];
+  if (!result) return null;
   return (
     <section className="section py-[80px]" id="finder">
       <div className="wrap my-0 mx-auto max-w-[1140px]">
