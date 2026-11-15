@@ -1,14 +1,44 @@
-import type { CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import capturedCSS from "../styles/site.css?raw";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "Sampurna Lal Kitab Report | Ank Darppan" }] }),
+  head: () => ({ meta: [
+    { title: "Sampurna Lal Kitab Report | Ank Darppan" },
+    { name: "description", content: "Personalised Sampurna Lal Kitab report with kundli charts, planetary analysis and a priority-wise remedy plan from Ank Darppan." },
+    { property: "og:title", content: "Sampurna Lal Kitab Report | Ank Darppan" },
+    { property: "og:description", content: "Discover your personalised Lal Kitab analysis and remedy plan from Ank Darppan." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 
 function Index() {
+  const [sample, setSample] = useState<number | null>(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const closeButton = useRef<HTMLButtonElement | null>(null);
+  const closeSample = () => { setSample(null); trigger.current?.focus(); };
+  useEffect(() => {
+    if (sample === null) return;
+    closeButton.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeSample();
+      if (event.key === "ArrowRight") setSample(value => value === null ? null : (value + 1) % 9);
+      if (event.key === "ArrowLeft") setSample(value => value === null ? null : (value + 8) % 9);
+      if (event.key === "Tab") {
+        const controls = Array.from(document.querySelectorAll<HTMLButtonElement>("#lb button"));
+        const first = controls[0]; const last = controls.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = overflow; window.removeEventListener("keydown", onKey); };
+  }, [sample]);
   return (
     <>
       <style>{capturedCSS}</style>
@@ -160,7 +190,7 @@ function Index() {
       </section>
       <ImportedSectionWhichPlanetCouldBe />
       <ImportedSectionTheQuestionsLalKitab />
-      <ImportedSectionSeeThePagesBefore />
+      <ImportedSectionSeeThePagesBefore onOpen={(index, button) => { trigger.current = button; setSample(index); }} />
       <div className="orn items-center gap-[14px] my-0 mx-auto max-w-[420px]" aria-hidden="true">
         <i className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-current h-[10px] w-[10px]" />
       </div>
@@ -179,13 +209,13 @@ function Index() {
         <div className="p [@media(max-width:640px)]:[font:400_26px/1_var(--display)]">₹941<small className="[@media(max-width:640px)]:[font:500_12px/1.2_var(--body)]">65-page Lal Kitab PDF</small></div>
         <a className={"buy sm items-center cursor-pointer text-[15px]! gap-[10px] justify-center overflow-hidden py-[10px] px-[18px] no-underline [font:700_18px/1_var(--body)] [&:hover]:[filter:brightness(1.07)]"} href="https://rzp.io/rzp/lalkitabreport" rel="noopener" target="_blank">Get My Report</a>
       </div>
-      <div className="lb bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#120806ee] grid-rows-[auto_1fr] inset-0 pt-[calc(env(safe-area-inset-top,0px)_+_12px)] pr-[max(12px,env(safe-area-inset-right,0px))] pb-[calc(env(safe-area-inset-bottom,0px)_+_12px)] pl-[max(12px,env(safe-area-inset-left,0px))] fixed z-50" id="lb" hidden role="dialog" aria-modal="true" aria-label="Sample page viewer">
+      <div className="lb bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#120806ee] grid-rows-[auto_1fr] inset-0 pt-[calc(env(safe-area-inset-top,0px)_+_12px)] pr-[max(12px,env(safe-area-inset-right,0px))] pb-[calc(env(safe-area-inset-bottom,0px)_+_12px)] pl-[max(12px,env(safe-area-inset-left,0px))] fixed z-50" id="lb" hidden={sample === null} onClick={event => { if (event.target === event.currentTarget) closeSample(); }} role="dialog" aria-modal="true" aria-label="Sample page viewer">
         <div className="lb-bar items-center flex-wrap gap-[12px] justify-between pb-[10px]">
-          <span id="lb-cap" />
-          <div className="lb-nav gap-[8px]"><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-prev" aria-label="Previous page">←</button><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-next" aria-label="Next page">→</button><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-close">Close</button></div>
+          <span id="lb-cap">{sample === null ? "" : samplePages[sample]?.caption}</span>
+          <div className="lb-nav gap-[8px]"><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-prev" onClick={() => setSample(value => value === null ? null : (value + 8) % 9)} aria-label="Previous page">←</button><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-next" onClick={() => setSample(value => value === null ? null : (value + 1) % 9)} aria-label="Next page">→</button><button className="cursor-pointer py-[9px] px-[15px] [font:600_15px/1_var(--body)]" type="button" id="lb-close" ref={closeButton} onClick={closeSample}>Close</button></div>
         </div>
         <div className="lb-stage items-start justify-center overflow-auto">
-          <img className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white h-auto max-w-[min(900px,100%)]" id="lb-img" alt="" />
+          <img className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white h-auto max-w-[min(900px,100%)]" id="lb-img" src={sample === null ? undefined : samplePages[sample]?.src} alt={sample === null ? "" : samplePages[sample]?.caption} />
         </div>
       </div>
     </>
@@ -217,7 +247,183 @@ function ImportedSectionKnowWhyProblemsRepeat() {
   );
 }
 
+const finderResults = [
+  {
+    "house": "Lal Kitab looks at Houses 1 & 10",
+    "title": "Authority, status and hard work",
+    "badges": [
+      [
+        "सू",
+        "Sun"
+      ],
+      [
+        "श",
+        "Saturn"
+      ]
+    ],
+    "text": "The Sun rules self and status, Saturn rules karma and the 10th house of work. A weak or clashing Saturn often shows as delays and effort without reward."
+  },
+  {
+    "house": "Lal Kitab looks at House 7",
+    "title": "Partnership and married life",
+    "badges": [
+      [
+        "शु",
+        "Venus"
+      ],
+      [
+        "बु",
+        "Mercury"
+      ]
+    ],
+    "text": "Venus and Mercury share the 7th as their pakka ghar. Enemies sitting with Venus, or the Sun burning it, are classic reasons for delay or friction."
+  },
+  {
+    "house": "Lal Kitab looks at Houses 2 & 12",
+    "title": "Savings and expenses",
+    "badges": [
+      [
+        "गु",
+        "Jupiter"
+      ],
+      [
+        "रा",
+        "Rahu"
+      ]
+    ],
+    "text": "Jupiter guards the 2nd house of family wealth. Rahu in the 12th, the house of expenses, is the well-known 'sarai mein Rahu' that lets money slip away."
+  },
+  {
+    "house": "Lal Kitab looks at Houses 4 & 12",
+    "title": "Peace of mind and sleep",
+    "badges": [
+      [
+        "चं",
+        "Moon"
+      ],
+      [
+        "रा",
+        "Rahu"
+      ],
+      [
+        "के",
+        "Ketu"
+      ]
+    ],
+    "text": "The Moon rules the mind from its pakka ghar, the 4th. Rahu and Ketu eclipse the Moon, and a troubled 12th house disturbs sleep."
+  },
+  {
+    "house": "Lal Kitab looks at Houses 6 & 8",
+    "title": "Disease and sudden trouble",
+    "badges": [
+      [
+        "मं",
+        "Mars"
+      ],
+      [
+        "श",
+        "Saturn"
+      ]
+    ],
+    "text": "The 6th is the house of disease and the 8th of sudden events, where Mars and Saturn sit as pakka owners. Their condition shapes recurring health issues."
+  },
+  {
+    "house": "Lal Kitab looks at House 4",
+    "title": "Home, property and mother",
+    "badges": [
+      [
+        "चं",
+        "Moon"
+      ],
+      [
+        "श",
+        "Saturn"
+      ]
+    ],
+    "text": "The 4th house is the Moon's own. Saturn connected with the 4th is linked with delayed or disputed property and a home built late."
+  },
+  {
+    "house": "Lal Kitab looks at House 5",
+    "title": "Children and education",
+    "badges": [
+      [
+        "गु",
+        "Jupiter"
+      ],
+      [
+        "के",
+        "Ketu"
+      ]
+    ],
+    "text": "Jupiter is the pakka owner of the 5th house of children and learning. Ketu is the Lal Kitab karaka of sons. Enemies in the 5th can point to Svayam Rin."
+  },
+  {
+    "house": "Lal Kitab looks at Houses 2, 4, 5, 9 & 12",
+    "title": "Rin: a carried-forward karmic debt",
+    "badges": [
+      [
+        "सू",
+        "Sun"
+      ],
+      [
+        "शु",
+        "Venus"
+      ],
+      [
+        "रा",
+        "Rahu"
+      ],
+      [
+        "के",
+        "Ketu"
+      ]
+    ],
+    "text": "When the same trouble repeats across generations, Lal Kitab checks for Pitru, Matru, Stri or other Rin. The remedy is done together by the whole family."
+  }
+];
+
+const samplePages = [
+  {
+    "src": "/site-assets/cover.jpg",
+    "caption": "Report cover page"
+  },
+  {
+    "src": "/site-assets/birth-details.jpg",
+    "caption": "Birth, astrological and panchang details page"
+  },
+  {
+    "src": "/site-assets/kundli-charts.jpg",
+    "caption": "Lagna, Lal Kitab and Chandra kundli charts"
+  },
+  {
+    "src": "/site-assets/kundli-prakar.jpg",
+    "caption": "Kundli prakar, life area predictions and Lal Kitab dasha"
+  },
+  {
+    "src": "/site-assets/planet-predictions.jpg",
+    "caption": "Planet-wise predictions and remedies table"
+  },
+  {
+    "src": "/site-assets/karmic-debt.jpg",
+    "caption": "Karmic debt analysis page"
+  },
+  {
+    "src": "/site-assets/key-indicators.jpg",
+    "caption": "Kundli key indicators and quick reference"
+  },
+  {
+    "src": "/site-assets/remedy-plan.jpg",
+    "caption": "Master remedy plan with priorities"
+  },
+  {
+    "src": "/site-assets/remedy-rules.jpg",
+    "caption": "Remedy sequence and Lal Kitab remedy guidelines"
+  }
+];
+
 function ImportedSectionWhichPlanetCouldBe() {
+  const [selected, setSelected] = useState(0);
+  const result = finderResults[selected] ?? finderResults[0];
   return (
     <section className="section py-[80px]" id="finder">
       <div className="wrap my-0 mx-auto max-w-[1140px]">
@@ -225,21 +431,14 @@ function ImportedSectionWhichPlanetCouldBe() {
         <h2 className="font-[family-name:var(--display)] text-[clamp(30px,4.4vw,46px)] font-normal leading-[1.15] m-0 mt-[12px]! text-balance">Which planet could be behind your problem?</h2>
         <p className="lede m-0 mt-[14px]! max-w-[62ch]">Pick what is troubling you most. See which grahas Lal Kitab usually connects with it.</p>
         <div className="finder items-start gap-[28px] mt-[40px]">
-          <div className="chips flex-wrap gap-[10px]" role="group" aria-label="Choose a problem"><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="true"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-brief" } as any)} /></svg>Career not growing</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-heart" } as any)} /></svg>Marriage delay or discord</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-coins" } as any)} /></svg>Money comes but doesn't stay</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-bed" } as any)} /></svg>Anxiety or poor sleep</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-pulse" } as any)} /></svg>Health keeps troubling</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-home" } as any)} /></svg>Property or home issues</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-book" } as any)} /></svg>Children or studies</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed="false"><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-users" } as any)} /></svg>Same trouble runs in the family</button></div>
+          <div className="chips flex-wrap gap-[10px]" role="group" aria-label="Choose a problem"><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 0} onClick={() => setSelected(0)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-brief" } as any)} /></svg>Career not growing</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 1} onClick={() => setSelected(1)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-heart" } as any)} /></svg>Marriage delay or discord</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 2} onClick={() => setSelected(2)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-coins" } as any)} /></svg>Money comes but doesn't stay</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 3} onClick={() => setSelected(3)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-bed" } as any)} /></svg>Anxiety or poor sleep</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 4} onClick={() => setSelected(4)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-pulse" } as any)} /></svg>Health keeps troubling</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 5} onClick={() => setSelected(5)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-home" } as any)} /></svg>Property or home issues</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 6} onClick={() => setSelected(6)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-book" } as any)} /></svg>Children or studies</button><button className="chip items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] cursor-pointer gap-[9px] py-[12px] px-[16px] text-left [font:600_16px/1.2_var(--body)]" type="button" aria-pressed={selected === 7} onClick={() => setSelected(7)}><svg className="ic fill-none flex-none h-[20px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-users" } as any)} /></svg>Same trouble runs in the family</button></div>
           <div className="result [background:linear-gradient(160deg,var(--sindoor),var(--sindoor-deep))] min-h-full overflow-hidden p-[28px]" aria-live="polite">
-            <p className="lbl tracking-[.14em] m-0 mt-[16px]! relative uppercase z-1 [font:600_12px/1_var(--body)]" id="r-house">Lal Kitab looks at houses 1 &amp; 10</p>
-            <h3 className="font-[family-name:var(--display)] text-[28px] font-normal leading-[1.15] m-0 mt-[10px]! text-balance" id="r-title">Authority, status and hard work</h3>
+            <p className="lbl tracking-[.14em] m-0 mt-[16px]! relative uppercase z-1 [font:600_12px/1_var(--body)]" id="r-house">{result.house}</p>
+            <h3 className="font-[family-name:var(--display)] text-[28px] font-normal leading-[1.15] m-0 mt-[10px]! text-balance" id="r-title">{result.title}</h3>
             <div className="gbadges flex-wrap gap-[10px] mt-[16px]" id="r-badges">
-              <span className="gb items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#00000030] gap-[10px] pt-[6px] pr-[14px] pb-[6px] pl-[6px]">
-                <b className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--foil) h-[36px] place-items-center w-[36px] [font:600_15px/1_var(--body)]">सू</b>
-                <span className="font-semibold">Sun</span>
-              </span>
-              <span className="gb items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#00000030] gap-[10px] pt-[6px] pr-[14px] pb-[6px] pl-[6px]">
-                <b className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--foil) h-[36px] place-items-center w-[36px] [font:600_15px/1_var(--body)]">श</b>
-                <span className="font-semibold">Saturn</span>
-              </span>
+              {result.badges.map(([symbol, name]) => <span className="gb" key={name}><b>{symbol}</b><span>{name}</span></span>)}
             </div>
-            <p className="m-0 mt-[16px]! relative z-1" id="r-text">The Sun rules self and status, Saturn rules karma and the 10th house of work. A weak or clashing Saturn often shows as delays and effort without reward.</p>
+            <p className="m-0 mt-[16px]! relative z-1" id="r-text">{result.text}</p>
             <a className={"buy items-center cursor-pointer gap-[10px] justify-center mt-[22px] overflow-hidden py-[17px] px-[28px] no-underline z-1 [font:700_18px/1_var(--body)] [&:hover]:[filter:brightness(1.07)]"} href="https://rzp.io/rzp/lalkitabreport" rel="noopener" target="_blank">Check my own chart · ₹941 <svg className="ic fill-none flex-none h-[18px] stroke-current w-[18px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-arrow" } as any)} /></svg></a>
           </div>
         </div>
@@ -354,7 +553,7 @@ function ImportedSectionTheQuestionsLalKitab() {
   );
 }
 
-function ImportedSectionSeeThePagesBefore() {
+function ImportedSectionSeeThePagesBefore({ onOpen }: { onOpen: (index: number, button: HTMLButtonElement) => void }) {
   return (
     <section className="section py-[80px]" id="inside">
       <div className="wrap my-0 mx-auto max-w-[1140px]">
@@ -366,7 +565,7 @@ function ImportedSectionSeeThePagesBefore() {
         </div>
         <div className="gallery gap-y-[30px] gap-x-[22px] mt-[36px]" id="gallery">
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(0, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Report cover page" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -374,7 +573,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Your personal cover</b>Prepared in your name with birth date, time and place.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(1, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Birth, astrological and panchang details page" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -382,7 +581,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Birth, astro &amp; panchang details</b>Lagna, rashi, nakshatra, strongest and weakest planet, dasha balance.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(2, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Lagna, Lal Kitab and Chandra kundli charts" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -390,7 +589,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Lagna, Lal Kitab &amp; Chandra kundli</b>Plus Surya, Navamsa (D9) and Varshphal charts on the next page.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(3, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Kundli prakar, life area predictions and Lal Kitab dasha" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -398,7 +597,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Kundli prakar &amp; life area scores</b>Andha, Rathandh and Dharmi checks, 8 life areas scored, and the active Lal Kitab dasha.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(4, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Planet-wise predictions and remedies table" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -406,7 +605,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Planet-wise predictions</b>Positive effects, challenges and top remedies for each graha.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(5, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Karmic debt analysis page" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -414,7 +613,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Karmic debt (Rin) analysis</b>Trigger planets, ancestral cause, signs in life and the nivaran upay.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(6, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Kundli key indicators and quick reference" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -422,7 +621,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Kundli key indicators</b>Takkar, kaayam, soya graha, soya ghar and dhoke ka grah at a glance.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(7, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Master remedy plan with priorities" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -430,7 +629,7 @@ function ImportedSectionSeeThePagesBefore() {
             <figcaption className="text-[15px] leading-[1.45] mt-[12px]"><b className="text-[16px] font-semibold">Master Remedy Plan</b>Every upay ranked 1, 2, 3 with the reason it was prescribed.</figcaption>
           </figure>
           <figure className="m-0 min-w-0">
-            <button type="button">
+            <button type="button" onClick={event => onOpen(8, event.currentTarget)} aria-haspopup="dialog">
               <img className="aspect-[911/1100] bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white max-w-full object-cover object-top w-full" loading="lazy" alt="Remedy sequence and Lal Kitab remedy guidelines" />
               <span className="tag bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor) tracking-[.1em] py-[5px] px-[8px] absolute right-[10px] top-[10px] [font:600_11px/1_var(--body)]">SAMPLE</span>
               <span className="zoom items-center bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-[#2a1a12d9] bottom-[10px] gap-[6px] left-[10px] py-[7px] px-[10px] absolute [font:600_13px/1_var(--body)]"><svg className="ic fill-none flex-none h-[15px] stroke-current w-[15px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-zoom" } as any)} /></svg>View page</span>
@@ -893,7 +1092,7 @@ function ImportedSectionStartWithTheRemedy() {
             <li className="gap-[10px]"><svg className="ic fill-none flex-none h-[20px] mt-[3px] stroke-current w-[20px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-check" } as any)} /></svg>Lucky day, colour, metal, direction &amp; numbers</li>
           </ul>
         </div>
-        <div className="box [background:linear-gradient(180deg,#fff9ec,#f6e6c3)] pt-[30px] pr-[28px] pb-[26px] pl-[28px] text-center [@media(max-width:900px)]:justify-self-center [@media(max-width:900px)]:max-w-[440px] [@media(max-width:900px)]:w-full"><div className="stack h-[150px] mt-[-80px] mr-auto mb-[6px] ml-auto relative w-[220px]" aria-hidden="true"><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /></div><p className="t tracking-[.14em] m-0 uppercase [font:600_13px/1_var(--body)]">One-time payment · incl. GST</p><div className="price items-start gap-[2px] justify-center mt-[8px]"><sup className="text-[.42em] mt-[.25em]">₹</sup>941</div><span className="per tracking-[.02em] mt-0 mr-0 mb-[18px] ml-0 [font:600_13px/1.3_var(--body)]">65 pages · less than ₹9 a page</span><a className={"buy items-center cursor-pointer gap-[10px] justify-center overflow-hidden py-[17px] px-[28px] no-underline w-full [font:700_18px/1_var(--body)] [&:hover]:[filter:brightness(1.07)]"} href="https://rzp.io/rzp/lalkitabreport" rel="noopener" target="_blank">Get My Report Now <svg className="ic fill-none flex-none h-[18px] stroke-current w-[18px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-arrow" } as any)} /></svg></a><p className="secure items-center flex-wrap text-[13px] gap-[6px] justify-center m-0 mt-[14px]!"><svg className="ic fill-none flex-none h-[16px] stroke-current w-[16px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-shield" } as any)} /></svg>100% secure payment by Razorpay</p><div className="pays flex-wrap gap-[6px] justify-center mt-[10px]" aria-label="Payment methods"><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">UPI</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">CARDS</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">NET BANKING</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">WALLETS</span></div><p className="agree text-[12.5px] leading-[1.4] m-0 mt-[12px]!">Personalised digital report: no cancellation or refund after payment. By paying you agree to our <a href="/termshtml-47f0e8934fe6baef">Terms</a>, <a href="/refundhtml-154ba115f4774285">Refund Policy</a> and <a href="/privacyhtml-4e6462aac3987692">Privacy Policy</a>.</p></div>
+        <div className="box [background:linear-gradient(180deg,#fff9ec,#f6e6c3)] pt-[30px] pr-[28px] pb-[26px] pl-[28px] text-center [@media(max-width:900px)]:justify-self-center [@media(max-width:900px)]:max-w-[440px] [@media(max-width:900px)]:w-full"><div className="stack h-[150px] mt-[-80px] mr-auto mb-[6px] ml-auto relative w-[220px]" aria-hidden="true"><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /><img className="left-1/2 max-w-full absolute top-0 w-[108px]" alt="" /></div><p className="t tracking-[.14em] m-0 uppercase [font:600_13px/1_var(--body)]">One-time payment · incl. GST</p><div className="price items-start gap-[2px] justify-center mt-[8px]"><sup className="text-[.42em] mt-[.25em]">₹</sup>941</div><span className="per tracking-[.02em] mt-0 mr-0 mb-[18px] ml-0 [font:600_13px/1.3_var(--body)]">65 pages · less than ₹9 a page</span><a className={"buy items-center cursor-pointer gap-[10px] justify-center overflow-hidden py-[17px] px-[28px] no-underline w-full [font:700_18px/1_var(--body)] [&:hover]:[filter:brightness(1.07)]"} href="https://rzp.io/rzp/lalkitabreport" rel="noopener" target="_blank">Get My Report Now <svg className="ic fill-none flex-none h-[18px] stroke-current w-[18px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-arrow" } as any)} /></svg></a><p className="secure items-center flex-wrap text-[13px] gap-[6px] justify-center m-0 mt-[14px]!"><svg className="ic fill-none flex-none h-[16px] stroke-current w-[16px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-shield" } as any)} /></svg>100% secure payment by Razorpay</p><div className="pays flex-wrap gap-[6px] justify-center mt-[10px]" aria-label="Payment methods"><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">UPI</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">CARDS</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">NET BANKING</span><span className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-white tracking-[.06em] py-[5px] px-[8px] [font:700_11px/1_var(--body)]">WALLETS</span></div><p className="agree text-[12.5px] leading-[1.4] m-0 mt-[12px]!">Personalised digital report: no cancellation or refund after payment. By paying you agree to our <a href="/terms.html">Terms</a>, <a href="/refund.html">Refund Policy</a> and <a href="/privacy.html">Privacy Policy</a>.</p></div>
       </div>
     </section>
   );
@@ -928,7 +1127,7 @@ function ImportedSectionBeforeYouOrder() {
           </details>
           <details className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) mb-[10px] py-0 px-[20px]">
             <summary className="cursor-pointer list-none pt-[18px] pr-[36px] pb-[18px] pl-0">Can I cancel or get a refund?</summary>
-            <p className="m-0 max-w-[68ch] pt-0 pr-0 pb-[18px] pl-0">Each report is prepared personally from your birth details, so orders cannot be cancelled or refunded after payment. Please check your details before paying. If we make a mistake in your report, we correct it and re-send it free within 24–48 hours. See our <a href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation Policy</a>.</p>
+            <p className="m-0 max-w-[68ch] pt-0 pr-0 pb-[18px] pl-0">Each report is prepared personally from your birth details, so orders cannot be cancelled or refunded after payment. Please check your details before paying. If we make a mistake in your report, we correct it and re-send it free within 24–48 hours. See our <a href="/refund.html">Refund &amp; Cancellation Policy</a>.</p>
           </details>
           <details className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--card) mb-[10px] py-0 px-[20px]">
             <summary className="cursor-pointer list-none pt-[18px] pr-[36px] pb-[18px] pl-0">Is my birth data kept private?</summary>
@@ -949,7 +1148,7 @@ function ImportedFooter() {
           <a className="brand items-center text-[26px]! gap-[10px] no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="#">Ank Darppan</a>
           <div className="contact flex-wrap gap-y-[8px] gap-x-[22px] mt-[12px]"><span className="items-center gap-[7px]"><svg className="ic fill-none flex-none h-[16px] stroke-current w-[16px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-phone" } as any)} /></svg>9317365025</span><span className="items-center gap-[7px]"><svg className="ic fill-none flex-none h-[16px] stroke-current w-[16px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-mail" } as any)} /></svg>ankdarppan@gmail.com</span><span className="items-center gap-[7px]"><svg className="ic fill-none flex-none h-[16px] stroke-current w-[16px] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.8]"><use {...({ href: "#i-globe" } as any)} /></svg>www.ankdarppan.in</span></div>
         </div>
-        <nav className="items-start flex-wrap gap-y-[8px] gap-x-[18px]" aria-label="Policies"><a className="no-underline" href="/contacthtml-030e61461fb49a1a">Contact Us</a><a className="no-underline" href="/shippinghtml-c3277bad636a0d2c">Shipping &amp; Delivery</a><a className="no-underline" href="/termshtml-47f0e8934fe6baef">Terms &amp; Conditions</a><a className="no-underline" href="/refundhtml-154ba115f4774285">Refund Policy</a><a className="no-underline" href="/privacyhtml-4e6462aac3987692">Privacy Policy</a></nav>
+        <nav className="items-start flex-wrap gap-y-[8px] gap-x-[18px]" aria-label="Policies"><a className="no-underline" href="/contact.html">Contact Us</a><a className="no-underline" href="/shipping.html">Shipping &amp; Delivery</a><a className="no-underline" href="/terms.html">Terms &amp; Conditions</a><a className="no-underline" href="/refund.html">Refund Policy</a><a className="no-underline" href="/privacy.html">Privacy Policy</a></nav>
         <p className="fine text-[13px] m-0 opacity-75 pt-[16px] w-full">Astrological guidance is based on the Lal Kitab tradition and is not a substitute for medical, legal or financial advice. Results of remedies vary with each person's karma and sincerity. © Ank Darppan</p>
       </div>
     </footer>
