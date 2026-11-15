@@ -14,47 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
+      facebook_eligibility: {
+        Row: {
+          facebook_id: string
+          follower_verified: boolean
+          reviewed_at: string
+          subscriber_verified: boolean
+        }
+        Insert: {
+          facebook_id: string
+          follower_verified?: boolean
+          reviewed_at?: string
+          subscriber_verified?: boolean
+        }
+        Update: {
+          facebook_id?: string
+          follower_verified?: boolean
+          reviewed_at?: string
+          subscriber_verified?: boolean
+        }
+        Relationships: []
+      }
       report_orders: {
         Row: {
           access_hash: string
           amount_paise: number
+          claimed_status: string
           coupon_code: string | null
           created_at: string
           currency: string
           delivered_at: string | null
           details: Json | null
+          eligibility_verified: boolean
+          facebook_id: string | null
           id: string
           paid_at: string | null
           razorpay_link_id: string | null
           razorpay_payment_id: string | null
+          reading: Json | null
+          reading_error: string | null
+          reading_started_at: string | null
+          reading_status: string
           status: string
         }
         Insert: {
           access_hash: string
           amount_paise: number
+          claimed_status?: string
           coupon_code?: string | null
           created_at?: string
           currency?: string
           delivered_at?: string | null
           details?: Json | null
+          eligibility_verified?: boolean
+          facebook_id?: string | null
           id: string
           paid_at?: string | null
           razorpay_link_id?: string | null
           razorpay_payment_id?: string | null
+          reading?: Json | null
+          reading_error?: string | null
+          reading_started_at?: string | null
+          reading_status?: string
           status?: string
         }
         Update: {
           access_hash?: string
           amount_paise?: number
+          claimed_status?: string
           coupon_code?: string | null
           created_at?: string
           currency?: string
           delivered_at?: string | null
           details?: Json | null
+          eligibility_verified?: boolean
+          facebook_id?: string | null
           id?: string
           paid_at?: string | null
           razorpay_link_id?: string | null
           razorpay_payment_id?: string | null
+          reading?: Json | null
+          reading_error?: string | null
+          reading_started_at?: string | null
+          reading_status?: string
           status?: string
         }
         Relationships: []

@@ -1,0 +1,7 @@
+CREATE TABLE public.facebook_eligibility (facebook_id text PRIMARY KEY, follower_verified boolean NOT NULL DEFAULT false, subscriber_verified boolean NOT NULL DEFAULT false, reviewed_at timestamptz NOT NULL DEFAULT now());
+GRANT ALL ON public.facebook_eligibility TO service_role;
+ALTER TABLE public.facebook_eligibility ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Service manages reviewed Facebook status" ON public.facebook_eligibility FOR ALL TO service_role USING (true) WITH CHECK (true);
+ALTER TABLE public.report_orders ADD COLUMN facebook_id text, ADD COLUMN claimed_status text NOT NULL DEFAULT 'neither', ADD COLUMN eligibility_verified boolean NOT NULL DEFAULT false, ADD COLUMN reading jsonb, ADD COLUMN reading_status text NOT NULL DEFAULT 'idle', ADD COLUMN reading_started_at timestamptz, ADD COLUMN reading_error text;
+CREATE FUNCTION public.guard_report_release() RETURNS trigger LANGUAGE plpgsql SET search_path=public AS $$ BEGIN IF (NEW.reading IS NOT NULL OR NEW.status='delivered') AND (NEW.status NOT IN ('paid','delivered') OR (NEW.amount_paise<94100 AND NOT NEW.eligibility_verified)) THEN RAISE EXCEPTION 'Full payment or verified discount eligibility is required for report release'; END IF; RETURN NEW; END; $$;
+CREATE TRIGGER guard_report_release BEFORE INSERT OR UPDATE ON public.report_orders FOR EACH ROW EXECUTE FUNCTION public.guard_report_release();

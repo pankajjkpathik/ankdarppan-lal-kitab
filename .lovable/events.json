@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "events": {
+    "project.checkout_started": {
+      "event_schema_version": 1,
+      "description": "Customer first interacts with the birth-details checkout form.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      }
+    }
+  }
+}
