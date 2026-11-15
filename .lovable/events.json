@@ -38,6 +38,26 @@
         }
       }
     },
+    "project.order_completed": {
+      "event_schema_version": 1,
+      "description": "Customer confirmation receives a server-verified paid report order; emitted once per order in the browser session.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "amount_paise"
+        ],
+        "properties": {
+          "amount_paise": {
+            "type": "integer"
+          }
+        }
+      }
+    },
     "project.payment_attempted": {
       "event_schema_version": 1,
       "description": "Customer submits valid birth details to start a Razorpay payment.",
