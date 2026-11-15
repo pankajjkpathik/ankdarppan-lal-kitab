@@ -2,6 +2,16 @@ import { createServerFn } from '@tanstack/react-start';
 import { getRequest } from '@tanstack/react-start/server';
 import { reportOrderSchema, orderAccessSchema, verifiedPayment } from './report-order-schema';
 import { calculateReportPrice } from './checkout-pricing';
+import { eligiblePrice } from './eligibility';
+import { z } from 'zod';
+
+export const checkSocialEligibility = createServerFn({ method: 'POST' })
+  .inputValidator((input: unknown) => z.object({ facebookId: z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._-]+$/), coupon: z.enum(['Follower20', 'Subscriber50']) }).parse(input))
+  .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data: status } = await supabaseAdmin.from('facebook_eligibility').select('follower_verified,subscriber_verified').eq('facebook_id', data.facebookId.toLowerCase()).maybeSingle();
+    return eligiblePrice(data.coupon, status);
+  });
 
 export const createReportPayment = createServerFn({ method: 'POST' })
   .inputValidator((input: unknown) => reportOrderSchema.parse(input))
@@ -15,24 +25,27 @@ export const createReportPayment = createServerFn({ method: 'POST' })
     const callback = `${origin}/checkout/confirmation?order=${id}&token=${token}`;
     // Privileged write is restricted to a newly minted guest order, never arbitrary rows.
     const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+    const { data: reviewed } = data.facebookId ? await supabaseAdmin.from('facebook_eligibility').select('follower_verified,subscriber_verified').eq('facebook_id', data.facebookId.toLowerCase()).maybeSingle() : { data: null };
+    const eligibility = eligiblePrice(data.coupon, reviewed);
     const { error: insertError } = await supabaseAdmin.from('report_orders').insert({
-      id, access_hash: await hashToken(token), details: data, amount_paise: price.total, coupon_code: price.coupon?.code ?? null,
+      id, access_hash: await hashToken(token), details: data, amount_paise: eligibility.amount, coupon_code: eligibility.verified ? price.coupon?.code ?? null : null,
+      facebook_id: data.facebookId.toLowerCase() || null, claimed_status: data.claimedStatus, eligibility_verified: eligibility.verified,
     });
     if (insertError) throw new Error('Your order could not be saved. No payment has been taken.');
     try {
       const link = await razorpayRequest('/v1/payment_links/', {
-        amount: price.total, currency: 'INR', accept_partial: false, reference_id: id,
+        amount: eligibility.amount, currency: 'INR', accept_partial: false, reference_id: id,
         description: 'Ank Darppan Sampurna Lal Kitab Report',
         customer: { name: data.fullName, contact: `+91${data.whatsapp}`, email: data.email },
         notify: { sms: false, email: false }, reminder_enable: false,
         notes: { report_order: id, coupon: price.coupon?.code ?? 'none' },
         callback_url: callback, callback_method: 'get',
       });
-      if (link.amount !== price.total || link.currency !== 'INR' || link.reference_id !== id) throw new Error('Razorpay returned an incorrect order amount.');
+      if (link.amount !== eligibility.amount || link.currency !== 'INR' || link.reference_id !== id) throw new Error('Razorpay returned an incorrect order amount.');
       const paymentUrl = safePaymentUrl(link.short_url);
       const { error } = await supabaseAdmin.from('report_orders').update({ razorpay_link_id: link.id }).eq('id', id);
       if (error) throw new Error('The payment page could not be saved. Please contact Ank Darppan.');
-      return { order: id, token, paymentUrl, amount: price.total };
+      return { order: id, token, paymentUrl, amount: eligibility.amount };
     } catch (error) {
       await supabaseAdmin.from('report_orders').update({ status: 'failed', details: null }).eq('id', id);
       throw error;

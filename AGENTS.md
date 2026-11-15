@@ -37,3 +37,6 @@ use the editor.
 - Keep unconnected checkout submission non-transactional and explicit about unavailable payment; never send discounted orders to a fixed-price payment link.
 - Use Razorpay hosted payment links through the connected gateway, with server-priced integer amounts and API-fetched captured payment checks; callbacks alone never prove payment.
 - Authorize guest order reads and updates with a hashed per-order capability; keep birth data inaccessible through public database clients and clear it on delivery.
+- Resolve Facebook discount eligibility only from protected reviewed records, never customer claims; unverified checkout defaults to full price and discounted release is guarded in the database.
+- Generate AI readings only by explicit paid-customer action with an atomic per-order claim and saved result; ambiguous failures require review rather than automatic replay.
+- AI readings are labelled Lal Kitab-inspired guidance and must not invent calculated kundli facts when no ephemeris is supplied.
