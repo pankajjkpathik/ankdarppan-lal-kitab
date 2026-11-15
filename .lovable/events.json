@@ -37,6 +37,35 @@
           }
         }
       }
+    },
+    "project.payment_attempted": {
+      "event_schema_version": 1,
+      "description": "Customer submits valid birth details to start a Razorpay payment.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "amount_paise",
+          "coupon"
+        ],
+        "properties": {
+          "amount_paise": {
+            "type": "integer"
+          },
+          "coupon": {
+            "type": "string",
+            "enum": [
+              "none",
+              "Follower20",
+              "Subscriber50"
+            ]
+          }
+        }
+      }
     }
   }
 }
