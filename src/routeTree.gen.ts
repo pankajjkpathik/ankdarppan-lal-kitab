@@ -10,107 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as Contacthtml030e61461fb49a1aRouteImport } from './routes/contacthtml-030e61461fb49a1a'
-import { Route as Privacyhtml4e6462aac3987692RouteImport } from './routes/privacyhtml-4e6462aac3987692'
-import { Route as Refundhtml154ba115f4774285RouteImport } from './routes/refundhtml-154ba115f4774285'
-import { Route as ShippinghtmlC3277bad636a0d2cRouteImport } from './routes/shippinghtml-c3277bad636a0d2c'
-import { Route as Termshtml47f0e8934fe6baefRouteImport } from './routes/termshtml-47f0e8934fe6baef'
+import { Route as ContactDothtmlRouteImport } from './routes/contact[.]html'
+import { Route as PrivacyDothtmlRouteImport } from './routes/privacy[.]html'
+import { Route as RefundDothtmlRouteImport } from './routes/refund[.]html'
+import { Route as ShippingDothtmlRouteImport } from './routes/shipping[.]html'
+import { Route as TermsDothtmlRouteImport } from './routes/terms[.]html'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Contacthtml030e61461fb49a1aRoute =
-  Contacthtml030e61461fb49a1aRouteImport.update({
-    id: '/contacthtml-030e61461fb49a1a',
-    path: '/contacthtml-030e61461fb49a1a',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Privacyhtml4e6462aac3987692Route =
-  Privacyhtml4e6462aac3987692RouteImport.update({
-    id: '/privacyhtml-4e6462aac3987692',
-    path: '/privacyhtml-4e6462aac3987692',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Refundhtml154ba115f4774285Route =
-  Refundhtml154ba115f4774285RouteImport.update({
-    id: '/refundhtml-154ba115f4774285',
-    path: '/refundhtml-154ba115f4774285',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ShippinghtmlC3277bad636a0d2cRoute =
-  ShippinghtmlC3277bad636a0d2cRouteImport.update({
-    id: '/shippinghtml-c3277bad636a0d2c',
-    path: '/shippinghtml-c3277bad636a0d2c',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Termshtml47f0e8934fe6baefRoute =
-  Termshtml47f0e8934fe6baefRouteImport.update({
-    id: '/termshtml-47f0e8934fe6baef',
-    path: '/termshtml-47f0e8934fe6baef',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const ContactDothtmlRoute = ContactDothtmlRouteImport.update({
+  id: '/contact.html',
+  path: '/contact.html',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyDothtmlRoute = PrivacyDothtmlRouteImport.update({
+  id: '/privacy.html',
+  path: '/privacy.html',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundDothtmlRoute = RefundDothtmlRouteImport.update({
+  id: '/refund.html',
+  path: '/refund.html',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingDothtmlRoute = ShippingDothtmlRouteImport.update({
+  id: '/shipping.html',
+  path: '/shipping.html',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsDothtmlRoute = TermsDothtmlRouteImport.update({
+  id: '/terms.html',
+  path: '/terms.html',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contacthtml-030e61461fb49a1a': typeof Contacthtml030e61461fb49a1aRoute
-  '/privacyhtml-4e6462aac3987692': typeof Privacyhtml4e6462aac3987692Route
-  '/refundhtml-154ba115f4774285': typeof Refundhtml154ba115f4774285Route
-  '/shippinghtml-c3277bad636a0d2c': typeof ShippinghtmlC3277bad636a0d2cRoute
-  '/termshtml-47f0e8934fe6baef': typeof Termshtml47f0e8934fe6baefRoute
+  '/contact.html': typeof ContactDothtmlRoute
+  '/privacy.html': typeof PrivacyDothtmlRoute
+  '/refund.html': typeof RefundDothtmlRoute
+  '/shipping.html': typeof ShippingDothtmlRoute
+  '/terms.html': typeof TermsDothtmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contacthtml-030e61461fb49a1a': typeof Contacthtml030e61461fb49a1aRoute
-  '/privacyhtml-4e6462aac3987692': typeof Privacyhtml4e6462aac3987692Route
-  '/refundhtml-154ba115f4774285': typeof Refundhtml154ba115f4774285Route
-  '/shippinghtml-c3277bad636a0d2c': typeof ShippinghtmlC3277bad636a0d2cRoute
-  '/termshtml-47f0e8934fe6baef': typeof Termshtml47f0e8934fe6baefRoute
+  '/contact.html': typeof ContactDothtmlRoute
+  '/privacy.html': typeof PrivacyDothtmlRoute
+  '/refund.html': typeof RefundDothtmlRoute
+  '/shipping.html': typeof ShippingDothtmlRoute
+  '/terms.html': typeof TermsDothtmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contacthtml-030e61461fb49a1a': typeof Contacthtml030e61461fb49a1aRoute
-  '/privacyhtml-4e6462aac3987692': typeof Privacyhtml4e6462aac3987692Route
-  '/refundhtml-154ba115f4774285': typeof Refundhtml154ba115f4774285Route
-  '/shippinghtml-c3277bad636a0d2c': typeof ShippinghtmlC3277bad636a0d2cRoute
-  '/termshtml-47f0e8934fe6baef': typeof Termshtml47f0e8934fe6baefRoute
+  '/contact.html': typeof ContactDothtmlRoute
+  '/privacy.html': typeof PrivacyDothtmlRoute
+  '/refund.html': typeof RefundDothtmlRoute
+  '/shipping.html': typeof ShippingDothtmlRoute
+  '/terms.html': typeof TermsDothtmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/contacthtml-030e61461fb49a1a'
-    | '/privacyhtml-4e6462aac3987692'
-    | '/refundhtml-154ba115f4774285'
-    | '/shippinghtml-c3277bad636a0d2c'
-    | '/termshtml-47f0e8934fe6baef'
+    | '/contact.html'
+    | '/privacy.html'
+    | '/refund.html'
+    | '/shipping.html'
+    | '/terms.html'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/contacthtml-030e61461fb49a1a'
-    | '/privacyhtml-4e6462aac3987692'
-    | '/refundhtml-154ba115f4774285'
-    | '/shippinghtml-c3277bad636a0d2c'
-    | '/termshtml-47f0e8934fe6baef'
+    | '/contact.html'
+    | '/privacy.html'
+    | '/refund.html'
+    | '/shipping.html'
+    | '/terms.html'
   id:
     | '__root__'
     | '/'
-    | '/contacthtml-030e61461fb49a1a'
-    | '/privacyhtml-4e6462aac3987692'
-    | '/refundhtml-154ba115f4774285'
-    | '/shippinghtml-c3277bad636a0d2c'
-    | '/termshtml-47f0e8934fe6baef'
+    | '/contact.html'
+    | '/privacy.html'
+    | '/refund.html'
+    | '/shipping.html'
+    | '/terms.html'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  Contacthtml030e61461fb49a1aRoute: typeof Contacthtml030e61461fb49a1aRoute
-  Privacyhtml4e6462aac3987692Route: typeof Privacyhtml4e6462aac3987692Route
-  Refundhtml154ba115f4774285Route: typeof Refundhtml154ba115f4774285Route
-  ShippinghtmlC3277bad636a0d2cRoute: typeof ShippinghtmlC3277bad636a0d2cRoute
-  Termshtml47f0e8934fe6baefRoute: typeof Termshtml47f0e8934fe6baefRoute
+  ContactDothtmlRoute: typeof ContactDothtmlRoute
+  PrivacyDothtmlRoute: typeof PrivacyDothtmlRoute
+  RefundDothtmlRoute: typeof RefundDothtmlRoute
+  ShippingDothtmlRoute: typeof ShippingDothtmlRoute
+  TermsDothtmlRoute: typeof TermsDothtmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,39 +117,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contacthtml-030e61461fb49a1a': {
-      id: '/contacthtml-030e61461fb49a1a'
-      path: '/contacthtml-030e61461fb49a1a'
-      fullPath: '/contacthtml-030e61461fb49a1a'
-      preLoaderRoute: typeof Contacthtml030e61461fb49a1aRouteImport
+    '/contact.html': {
+      id: '/contact.html'
+      path: '/contact.html'
+      fullPath: '/contact.html'
+      preLoaderRoute: typeof ContactDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacyhtml-4e6462aac3987692': {
-      id: '/privacyhtml-4e6462aac3987692'
-      path: '/privacyhtml-4e6462aac3987692'
-      fullPath: '/privacyhtml-4e6462aac3987692'
-      preLoaderRoute: typeof Privacyhtml4e6462aac3987692RouteImport
+    '/privacy.html': {
+      id: '/privacy.html'
+      path: '/privacy.html'
+      fullPath: '/privacy.html'
+      preLoaderRoute: typeof PrivacyDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/refundhtml-154ba115f4774285': {
-      id: '/refundhtml-154ba115f4774285'
-      path: '/refundhtml-154ba115f4774285'
-      fullPath: '/refundhtml-154ba115f4774285'
-      preLoaderRoute: typeof Refundhtml154ba115f4774285RouteImport
+    '/refund.html': {
+      id: '/refund.html'
+      path: '/refund.html'
+      fullPath: '/refund.html'
+      preLoaderRoute: typeof RefundDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/shippinghtml-c3277bad636a0d2c': {
-      id: '/shippinghtml-c3277bad636a0d2c'
-      path: '/shippinghtml-c3277bad636a0d2c'
-      fullPath: '/shippinghtml-c3277bad636a0d2c'
-      preLoaderRoute: typeof ShippinghtmlC3277bad636a0d2cRouteImport
+    '/shipping.html': {
+      id: '/shipping.html'
+      path: '/shipping.html'
+      fullPath: '/shipping.html'
+      preLoaderRoute: typeof ShippingDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/termshtml-47f0e8934fe6baef': {
-      id: '/termshtml-47f0e8934fe6baef'
-      path: '/termshtml-47f0e8934fe6baef'
-      fullPath: '/termshtml-47f0e8934fe6baef'
-      preLoaderRoute: typeof Termshtml47f0e8934fe6baefRouteImport
+    '/terms.html': {
+      id: '/terms.html'
+      path: '/terms.html'
+      fullPath: '/terms.html'
+      preLoaderRoute: typeof TermsDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -162,11 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  Contacthtml030e61461fb49a1aRoute: Contacthtml030e61461fb49a1aRoute,
-  Privacyhtml4e6462aac3987692Route: Privacyhtml4e6462aac3987692Route,
-  Refundhtml154ba115f4774285Route: Refundhtml154ba115f4774285Route,
-  ShippinghtmlC3277bad636a0d2cRoute: ShippinghtmlC3277bad636a0d2cRoute,
-  Termshtml47f0e8934fe6baefRoute: Termshtml47f0e8934fe6baefRoute,
+  ContactDothtmlRoute: ContactDothtmlRoute,
+  PrivacyDothtmlRoute: PrivacyDothtmlRoute,
+  RefundDothtmlRoute: RefundDothtmlRoute,
+  ShippingDothtmlRoute: ShippingDothtmlRoute,
+  TermsDothtmlRoute: TermsDothtmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

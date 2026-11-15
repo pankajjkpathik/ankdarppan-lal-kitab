@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import capturedCSS from "../styles/pages/shippinghtml-c3277bad636a0d2c.css?raw";
+import capturedCSS from "../styles/pages/shipping.html.css?raw";
 
-export const Route = createFileRoute("/shippinghtml-c3277bad636a0d2c")({
-  head: () => ({ meta: [{ title: "Shipping \u0026 Delivery Policy | Ank Darppan" }] }),
+export const Route = createFileRoute("/shipping.html")({
+  head: () => ({ meta: [{"title": "Shipping & Delivery Policy | Ank Darppan"}, {"name": "description", "content": "Shipping & Delivery Policy for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:title", "content": "Shipping & Delivery Policy | Ank Darppan"}, {"property": "og:description", "content": "Shipping & Delivery Policy for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:type", "content": "website"}, {"name": "twitter:card", "content": "summary_large_image"}] }),
   staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
@@ -13,8 +13,8 @@ function Index() {
       <style>{capturedCSS}</style>
       <header className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) sticky top-0 z-5">
         <div className="wrap items-center flex gap-[12px] justify-between my-0 mx-auto max-w-[1140px] py-[12px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))]">
-          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/indexhtml-213456c5dc963e03">Ank Darppan</a>
-          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/indexhtml-213456c5dc963e03">← Back to Lal Kitab Report</a>
+          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/">Ank Darppan</a>
+          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/">← Back to Lal Kitab Report</a>
         </div>
       </header>
       <div className="hero [padding-block:48px_40px]">
@@ -23,11 +23,11 @@ function Index() {
           <h1 className="font-[family-name:var(--display)] text-[clamp(34px,5vw,50px)] font-normal leading-[1.2] mt-[12px] mr-0 mb-[8px] ml-0 text-balance">Shipping &amp; Delivery Policy</h1>
           <p className="m-0">For the Sampurna Lal Kitab Report sold at www.ankdarppan.com. Effective from 26 October 2026.</p>
           <nav className="tabs flex-wrap gap-[8px] mt-[22px]" aria-label="Policies">
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/contacthtml-030e61461fb49a1a">Contact Us</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/contact.html">Contact Us</a>
             <a className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--foil) text-[15px] font-semibold py-[6px] px-[14px] no-underline" aria-current="page" href="#">Shipping &amp; Delivery</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/termshtml-47f0e8934fe6baef">Terms &amp; Conditions</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacyhtml-4e6462aac3987692">Privacy Policy</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/terms.html">Terms &amp; Conditions</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refund.html">Refund &amp; Cancellation</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacy.html">Privacy Policy</a>
           </nav>
         </div>
       </div>
@@ -42,7 +42,7 @@ function Index() {
             </ul>
           </div>
           <p className="updated text-[15px] max-w-[72ch]">Last updated: 26 October 2026</p>
-          <p className="max-w-[72ch]">This Shipping &amp; Delivery Policy applies to the Sampurna Lal Kitab Report (₹581, inclusive of GST) sold by Ank Darppan through www.ankdarppan.com. It forms part of our <a href="/termshtml-47f0e8934fe6baef">Terms &amp; Conditions</a>.</p>
+          <p className="max-w-[72ch]">This Shipping &amp; Delivery Policy applies to the Sampurna Lal Kitab Report (₹581, inclusive of GST) sold by Ank Darppan through www.ankdarppan.com. It forms part of our <a href="/terms.html">Terms &amp; Conditions</a>.</p>
           <section className="[scroll-margin-top:80px]" id="what">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">1.</span>What is delivered</h2>
             <p className="max-w-[72ch]">You receive one personalised Lal Kitab Report of about 65 pages as a PDF file, prepared from the birth details you submit. No physical product, printed copy or CD is sent.</p>
@@ -89,7 +89,7 @@ function Index() {
           </section>
           <section className="[scroll-margin-top:80px]" id="confirm">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">6.</span>When delivery is complete</h2>
-            <p className="max-w-[72ch]">Delivery is complete once the Report has been sent to the WhatsApp number or email address you provided. Please save the PDF on your phone or computer, as we do not keep a copy of your Report after delivery (see our <a href="/privacyhtml-4e6462aac3987692#retain">Privacy Policy</a>).</p>
+            <p className="max-w-[72ch]">Delivery is complete once the Report has been sent to the WhatsApp number or email address you provided. Please save the PDF on your phone or computer, as we do not keep a copy of your Report after delivery (see our <a href="/privacy.html#retain">Privacy Policy</a>).</p>
           </section>
           <section className="[scroll-margin-top:80px]" id="not-received">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">7.</span>If you have not received your Report</h2>
@@ -105,7 +105,7 @@ function Index() {
           </section>
           <section className="[scroll-margin-top:80px]" id="late">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">9.</span>Delayed delivery</h2>
-            <p className="max-w-[72ch]">If your Report has not reached you within 48 hours, contact us and we will send it immediately. Orders are not cancellable or refundable (see our <a href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation Policy</a>). If we are ever unable to prepare or deliver your Report at all, the amount you paid will be returned.</p>
+            <p className="max-w-[72ch]">If your Report has not reached you within 48 hours, contact us and we will send it immediately. Orders are not cancellable or refundable (see our <a href="/refund.html">Refund &amp; Cancellation Policy</a>). If we are ever unable to prepare or deliver your Report at all, the amount you paid will be returned.</p>
           </section>
           <section className="[scroll-margin-top:80px]" id="contact">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance"><span className="n mr-[6px]">10.</span>Contact</h2>
@@ -123,7 +123,7 @@ function Index() {
         </div>
       </main>
       <footer className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) text-[15px]">
-        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="/contacthtml-030e61461fb49a1a">Contact</a> · <a href="#">Delivery</a> · <a href="/termshtml-47f0e8934fe6baef">Terms</a> · <a href="/refundhtml-154ba115f4774285">Refunds</a> · <a href="/privacyhtml-4e6462aac3987692">Privacy</a></span></div>
+        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="/contact.html">Contact</a> · <a href="#">Delivery</a> · <a href="/terms.html">Terms</a> · <a href="/refund.html">Refunds</a> · <a href="/privacy.html">Privacy</a></span></div>
       </footer>
     </>
   );

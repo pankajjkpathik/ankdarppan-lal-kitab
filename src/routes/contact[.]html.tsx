@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import capturedCSS from "../styles/pages/contacthtml-030e61461fb49a1a.css?raw";
+import capturedCSS from "../styles/pages/contact.html.css?raw";
 
-export const Route = createFileRoute("/contacthtml-030e61461fb49a1a")({
-  head: () => ({ meta: [{ title: "Contact Us | Ank Darppan" }] }),
+export const Route = createFileRoute("/contact.html")({
+  head: () => ({ meta: [{ title: "Contact Us | Ank Darppan" }, { name: "description", content: "Contact Ank Darppan for Lal Kitab report orders, corrections and delivery support." }, { property: "og:title", content: "Contact Us | Ank Darppan" }, { property: "og:description", content: "Contact Ank Darppan for Lal Kitab report orders, corrections and delivery support." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
@@ -13,8 +13,8 @@ function Index() {
       <style>{capturedCSS}</style>
       <header className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) sticky top-0 z-5">
         <div className="wrap items-center flex gap-[12px] justify-between my-0 mx-auto max-w-[1140px] py-[12px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))]">
-          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/indexhtml-213456c5dc963e03">Ank Darppan</a>
-          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/indexhtml-213456c5dc963e03">← Back to Lal Kitab Report</a>
+          <a className="brand no-underline whitespace-nowrap [font:400_22px/1_var(--display)]" href="/">Ank Darppan</a>
+          <a className={"back text-[15px] font-semibold py-[8px] px-[14px] no-underline [transition:background_.2s] [&:hover]:bg-none [&:hover]:[background-position:0%_0%] [&:hover]:[background-size:auto_auto] [&:hover]:[background-repeat:repeat] [&:hover]:[background-origin:padding-box] [&:hover]:[background-clip:border-box] [&:hover]:[background-attachment:scroll] [&:hover]:bg-[#ffffff1a]"} href="/">← Back to Lal Kitab Report</a>
         </div>
       </header>
       <div className="hero [padding-block:48px_40px]">
@@ -24,10 +24,10 @@ function Index() {
           <p className="m-0">Questions about your Lal Kitab report? Reach us on WhatsApp, phone or email.</p>
           <nav className="tabs flex-wrap gap-[8px] mt-[22px]" aria-label="Policies">
             <a className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--foil) text-[15px] font-semibold py-[6px] px-[14px] no-underline" aria-current="page" href="#">Contact Us</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/shippinghtml-c3277bad636a0d2c">Shipping &amp; Delivery</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/termshtml-47f0e8934fe6baef">Terms &amp; Conditions</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation</a>
-            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacyhtml-4e6462aac3987692">Privacy Policy</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/shipping.html">Shipping &amp; Delivery</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/terms.html">Terms &amp; Conditions</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/refund.html">Refund &amp; Cancellation</a>
+            <a className="text-[15px] font-semibold py-[6px] px-[14px] no-underline" href="/privacy.html">Privacy Policy</a>
           </nav>
         </div>
       </div>
@@ -64,7 +64,7 @@ function Index() {
               <li className="my-[4px] mx-0 max-w-[72ch]">your Razorpay payment ID (it is in your payment confirmation SMS or email);</li>
               <li className="my-[4px] mx-0 max-w-[72ch]">a short description of your question or problem.</li>
             </ul>
-            <p className="max-w-[72ch]">If you need to correct a birth detail, write to us as soon as possible, before your report is prepared. See <a href="/termshtml-47f0e8934fe6baef#accuracy">Your birth details</a> in our Terms.</p>
+            <p className="max-w-[72ch]">If you need to correct a birth detail, write to us as soon as possible, before your report is prepared. See <a href="/terms.html#accuracy">Your birth details</a> in our Terms.</p>
           </section>
           <section className="[scroll-margin-top:80px]" id="grievance">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance">Grievance officer</h2>
@@ -85,15 +85,15 @@ function Index() {
           <section className="[scroll-margin-top:80px]" id="links">
             <h2 className="font-[family-name:var(--display)] text-[26px] font-normal leading-[1.2] mt-[36px] mr-0 mb-[8px] ml-0 text-balance">Useful links</h2>
             <ul>
-              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/shippinghtml-c3277bad636a0d2c">Shipping &amp; Delivery Policy</a>: how and when your report is delivered</li>
-              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/refundhtml-154ba115f4774285">Refund &amp; Cancellation Policy</a>: our no-cancellation policy and how corrections work</li>
-              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/termshtml-47f0e8934fe6baef">Terms &amp; Conditions</a> and <a href="/privacyhtml-4e6462aac3987692">Privacy Policy</a></li>
+              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/shipping.html">Shipping &amp; Delivery Policy</a>: how and when your report is delivered</li>
+              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/refund.html">Refund &amp; Cancellation Policy</a>: our no-cancellation policy and how corrections work</li>
+              <li className="my-[4px] mx-0 max-w-[72ch]"><a href="/terms.html">Terms &amp; Conditions</a> and <a href="/privacy.html">Privacy Policy</a></li>
             </ul>
           </section>
         </div>
       </main>
       <footer className="bg-none [background-position:0%_0%] [background-size:auto_auto] [background-repeat:repeat] [background-origin:padding-box] [background-clip:border-box] [background-attachment:scroll] bg-(--sindoor-deep) text-[15px]">
-        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="#">Contact</a> · <a href="/shippinghtml-c3277bad636a0d2c">Delivery</a> · <a href="/termshtml-47f0e8934fe6baef">Terms</a> · <a href="/refundhtml-154ba115f4774285">Refunds</a> · <a href="/privacyhtml-4e6462aac3987692">Privacy</a></span></div>
+        <div className="wrap flex flex-wrap gap-[12px] justify-between my-0 mx-auto max-w-[1140px] pl-[max(16px,env(safe-area-inset-left,0px))] pr-[max(16px,env(safe-area-inset-right,0px))] [padding-block:28px_calc(28px_+_env(safe-area-inset-bottom,0px))]"><span>© Ank Darppan · 93173 65025 · ankdarppan@gmail.com</span><span><a href="#">Contact</a> · <a href="/shipping.html">Delivery</a> · <a href="/terms.html">Terms</a> · <a href="/refund.html">Refunds</a> · <a href="/privacy.html">Privacy</a></span></div>
       </footer>
     </>
   );

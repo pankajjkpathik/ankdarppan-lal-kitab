@@ -31,3 +31,5 @@ use the editor.
 
 - Keep imported markup and interactive state in its route file, with source styling separate, to preserve capture fidelity.
 - Preserve unimported same-site link paths on the preview origin; import additional pages only when requested.
+- Use escaped-dot route filenames for imported .html addresses and keep each page stylesheet alongside its original styling to preserve direct links.
+- Store explicitly requested local fallback media in public/site-assets so unavailable source URLs are never required to display the page.
