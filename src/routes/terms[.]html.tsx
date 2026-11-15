@@ -3,7 +3,7 @@ import capturedCSS from "../styles/pages/terms.html.css?raw";
 
 export const Route = createFileRoute("/terms.html")({
   head: () => ({ meta: [{"title": "Terms & Conditions | Ank Darppan"}, {"name": "description", "content": "Terms & Conditions for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:title", "content": "Terms & Conditions | Ank Darppan"}, {"property": "og:description", "content": "Terms & Conditions for personalised Ank Darppan Lal Kitab reports."}, {"property": "og:type", "content": "website"}, {"name": "twitter:card", "content": "summary_large_image"}] }),
-  staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
+  staticData: { sitemap: true, importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 

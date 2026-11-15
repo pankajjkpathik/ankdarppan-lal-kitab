@@ -9,6 +9,7 @@ import { createReportPayment, checkSocialEligibility } from '@/lib/report-orders
 import { reportOrderSchema } from '@/lib/report-order-schema';
 
 export const Route = createFileRoute('/checkout')({
+  staticData: { sitemap: false },
   head: () => ({ meta: [
     { title: 'Lal Kitab Report Checkout | Ank Darppan' },
     { name: 'description', content: 'Enter your birth details and apply your Ank Darppan coupon for the Sampurna Lal Kitab report.' },
@@ -16,6 +17,7 @@ export const Route = createFileRoute('/checkout')({
     { property: 'og:description', content: 'Your personalised Lal Kitab report: birth details, coupon savings and order summary.' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'robots', content: 'noindex, follow' },
   ] }),
   component: Checkout,
 });

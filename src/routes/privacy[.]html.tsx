@@ -3,7 +3,7 @@ import capturedCSS from "../styles/pages/privacy.html.css?raw";
 
 export const Route = createFileRoute("/privacy.html")({
   head: () => ({ meta: [{ title: "Privacy Policy | Ank Darppan" }, { name: "description", content: "How Ank Darppan uses and protects personal details for Lal Kitab reports." }, { property: "og:title", content: "Privacy Policy | Ank Darppan" }, { property: "og:description", content: "How Ank Darppan uses and protects personal details for Lal Kitab reports." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
-  staticData: { importedDocument: { html: { "lang": "en" }, body: {  } } },
+  staticData: { sitemap: true, importedDocument: { html: { "lang": "en" }, body: {  } } },
   component: Index,
 });
 

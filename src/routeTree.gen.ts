@@ -15,6 +15,7 @@ import { Route as ContactDothtmlRouteImport } from './routes/contact[.]html'
 import { Route as PrivacyDothtmlRouteImport } from './routes/privacy[.]html'
 import { Route as RefundDothtmlRouteImport } from './routes/refund[.]html'
 import { Route as ShippingDothtmlRouteImport } from './routes/shipping[.]html'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsDothtmlRouteImport } from './routes/terms[.]html'
 import { Route as CheckoutConfirmationRouteImport } from './routes/checkout_.confirmation'
 
@@ -48,6 +49,11 @@ const ShippingDothtmlRoute = ShippingDothtmlRouteImport.update({
   path: '/shipping.html',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsDothtmlRoute = TermsDothtmlRouteImport.update({
   id: '/terms.html',
   path: '/terms.html',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/privacy.html': typeof PrivacyDothtmlRoute
   '/refund.html': typeof RefundDothtmlRoute
   '/shipping.html': typeof ShippingDothtmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
   '/checkout_/confirmation': typeof CheckoutConfirmationRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/privacy.html'
     | '/refund.html'
     | '/shipping.html'
+    | '/sitemap.xml'
     | '/terms.html'
     | '/checkout/confirmation'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/privacy.html'
     | '/refund.html'
     | '/shipping.html'
+    | '/sitemap.xml'
     | '/terms.html'
     | '/checkout/confirmation'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/privacy.html'
     | '/refund.html'
     | '/shipping.html'
+    | '/sitemap.xml'
     | '/terms.html'
     | '/checkout_/confirmation'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   PrivacyDothtmlRoute: typeof PrivacyDothtmlRoute
   RefundDothtmlRoute: typeof RefundDothtmlRoute
   ShippingDothtmlRoute: typeof ShippingDothtmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsDothtmlRoute: typeof TermsDothtmlRoute
   CheckoutConfirmationRoute: typeof CheckoutConfirmationRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShippingDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms.html': {
       id: '/terms.html'
       path: '/terms.html'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyDothtmlRoute: PrivacyDothtmlRoute,
   RefundDothtmlRoute: RefundDothtmlRoute,
   ShippingDothtmlRoute: ShippingDothtmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsDothtmlRoute: TermsDothtmlRoute,
   CheckoutConfirmationRoute: CheckoutConfirmationRoute,
 }

@@ -40,3 +40,5 @@ use the editor.
 - Resolve Facebook discount eligibility only from protected reviewed records, never customer claims; unverified checkout defaults to full price and discounted release is guarded in the database.
 - Generate AI readings only by explicit paid-customer action with an atomic per-order claim and saved result; ambiguous failures require review rather than automatic replay.
 - AI readings are labelled Lal Kitab-inspired guidance and must not invent calculated kundli facts when no ephemeris is supplied.
+
+- Derive sitemap URLs from required route-level sitemap decisions; exclude checkout and order pages and omit lastmod without authoritative content timestamps.
