@@ -5,5 +5,5 @@
 - [x] Compare desktop and phone sections and restore selectors and viewer controls.
 - [x] Restore the ten images using the supplied local files and verify the gallery.
 - [x] Import and verify Contact, Shipping, Terms, Refund, and Privacy pages.
-- [ ] Connect the requested Razorpay account — no Razorpay connection or credentials are currently available.
-- [ ] Activate Razorpay payment collection and server-verified coupon orders after connection; checkout currently validates details and previews discounts without charging or submitting orders.
+- [x] Connect the requested Razorpay account and verify the app credential path.
+- [ ] Verify Razorpay hosted payment creation and server-verified coupon order confirmation end to end.
