@@ -1,0 +1,2 @@
+ALTER TABLE public.facebook_eligibility ADD COLUMN IF NOT EXISTS verification_code_hash text;
+COMMENT ON COLUMN public.facebook_eligibility.verification_code_hash IS 'SHA-256 hex of the private code sent to the verified account owner; required to use the discount.';

@@ -15,6 +15,13 @@
       "when": 1794741828042,
       "tag": "0001_reading_and_social_eligibility",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795110407950,
+      "tag": "0002_facebook_eligibility_code",
+      "breakpoints": true
     }
   ]
 }

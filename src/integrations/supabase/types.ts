@@ -20,18 +20,21 @@ export type Database = {
           follower_verified: boolean
           reviewed_at: string
           subscriber_verified: boolean
+          verification_code_hash: string | null
         }
         Insert: {
           facebook_id: string
           follower_verified?: boolean
           reviewed_at?: string
           subscriber_verified?: boolean
+          verification_code_hash?: string | null
         }
         Update: {
           facebook_id?: string
           follower_verified?: boolean
           reviewed_at?: string
           subscriber_verified?: boolean
+          verification_code_hash?: string | null
         }
         Relationships: []
       }
