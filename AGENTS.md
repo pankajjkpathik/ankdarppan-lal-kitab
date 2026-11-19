@@ -42,3 +42,4 @@ use the editor.
 - AI readings are labelled Lal Kitab-inspired guidance and must not invent calculated kundli facts when no ephemeris is supplied.
 
 - Derive sitemap URLs from required route-level sitemap decisions; exclude checkout and order pages and omit lastmod without authoritative content timestamps.
+- Discount approvals are managed only by admins (user_roles + has_role) through authenticated server functions; private verification codes are stored hashed and never shown again.
