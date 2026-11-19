@@ -254,3 +254,21 @@
 .report-hero .report-hero-buy { min-height: 48px; height: auto; padding: 12px 22px; background: var(--gradient-gold); color: var(--checkout-navy); font: 600 14px/1.6 var(--font-checkout-body); border-radius: 8px; }
 .report-hero-delivery { font: 400 11px/1.7 var(--font-checkout-body); margin: 14px 0 0; }
 @media(max-width:640px) { .report-hero-inner { padding: 46px 16px 28px; } .report-hero h1 { font-size: 30px; } .report-hero-hindi { font-size: 19px; } .report-hero-intro { font-size: 12px; } .report-hero-spread { height: 220px; max-width: 330px; } .report-hero-spread img { height: 193px; width: 136px; } .report-hero-spread .report-page-cover { height: 214px; width: 151px; left: calc(50% - 75.5px); } }
+
+.admin-shell { min-height: 100vh; padding: 3rem 1rem; background: var(--checkout-navy, #0A1E3D); color: #FAFAF7; font-family: var(--font-checkout-body, Poppins, sans-serif); display: flex; justify-content: center; align-items: flex-start; }
+.admin-wide { width: 100%; max-width: 860px; display: grid; gap: 1.5rem; }
+.admin-narrow { width: 100%; max-width: 420px; }
+.admin-card { background: #0F2547; border: 1px solid rgba(200,154,62,0.4); border-radius: 14px; padding: 1.5rem; display: grid; gap: 1rem; }
+.admin-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.admin-title { font-family: var(--font-checkout-display, Cinzel, serif); font-size: 1.75rem; background: var(--gradient-gold, linear-gradient(90deg,#C89A3E,#F4C542,#B8763B)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.admin-sub { font-family: var(--font-checkout-display, Cinzel, serif); font-size: 1.15rem; color: #F4C542; }
+.admin-field { display: grid; gap: .4rem; }
+.admin-field label { color: #E8DFC8; }
+.admin-field input, .admin-select { background: #061229; color: #FAFAF7; border: 1px solid rgba(200,154,62,0.4); }
+.admin-select { height: 2.5rem; border-radius: 8px; padding: 0 .6rem; }
+.admin-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.admin-row { display: flex; gap: .5rem; }
+.admin-note { color: #E8DFC8; font-size: .9rem; word-break: break-word; }
+.admin-link { color: #F4C542; text-decoration: underline; background: none; border: 0; cursor: pointer; justify-self: start; }
+.admin-list { display: grid; gap: .5rem; }
+.admin-list li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid rgba(200,154,62,0.25); }
