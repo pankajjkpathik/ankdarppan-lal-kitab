@@ -64,7 +64,7 @@ export const listOrders = createServerFn({ method: 'GET' }).middleware([requireS
     return (data ?? []).map(o => {
       const d = (o.details ?? {}) as Record<string, string>;
       return { id: o.id, createdAt: o.created_at, amount: o.amount_paise, balance: FULL - o.amount_paise, coupon: o.coupon_code, facebookId: o.facebook_id, claimed: o.claimed_status,
-        review: o.review_status, balanceUrl: o.balance_link_url, name: d.fullName ?? '', whatsapp: d.whatsapp ?? '', email: d.email ?? '' };
+        review: o.review_status, balanceUrl: o.balance_link_url, name: d['fullName'] ?? '', whatsapp: d['whatsapp'] ?? '', email: d['email'] ?? '' };
     });
   });
 
@@ -93,7 +93,7 @@ export const requestBalance = createServerFn({ method: 'POST' }).middleware([req
     const link = await razorpayRequest('/v1/payment_links/', {
       amount: balance, currency: 'INR', accept_partial: false, reference_id: `${data.id.slice(0, 30)}-bal`,
       description: 'Balance for Ank Darppan Sampurna Lal Kitab Report',
-      customer: { name: d.fullName, contact: d.whatsapp ? `+91${d.whatsapp}` : undefined, email: d.email },
+      customer: { name: d['fullName'], contact: d['whatsapp'] ? `+91${d['whatsapp']}` : undefined, email: d['email'] },
       notify: { sms: true, email: true }, reminder_enable: true, notes: { report_order: data.id, balance: 'yes' },
     });
     if (link.amount !== balance || link.currency !== 'INR') throw new Error('Razorpay returned an incorrect amount.');
