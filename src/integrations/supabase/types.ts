@@ -42,6 +42,8 @@ export type Database = {
         Row: {
           access_hash: string
           amount_paise: number
+          balance_link_id: string | null
+          balance_link_url: string | null
           claimed_status: string
           coupon_code: string | null
           created_at: string
@@ -58,11 +60,15 @@ export type Database = {
           reading_error: string | null
           reading_started_at: string | null
           reading_status: string
+          review_status: string
+          reviewed_at: string | null
           status: string
         }
         Insert: {
           access_hash: string
           amount_paise: number
+          balance_link_id?: string | null
+          balance_link_url?: string | null
           claimed_status?: string
           coupon_code?: string | null
           created_at?: string
@@ -79,11 +85,15 @@ export type Database = {
           reading_error?: string | null
           reading_started_at?: string | null
           reading_status?: string
+          review_status?: string
+          reviewed_at?: string | null
           status?: string
         }
         Update: {
           access_hash?: string
           amount_paise?: number
+          balance_link_id?: string | null
+          balance_link_url?: string | null
           claimed_status?: string
           coupon_code?: string | null
           created_at?: string
@@ -100,6 +110,8 @@ export type Database = {
           reading_error?: string | null
           reading_started_at?: string | null
           reading_status?: string
+          review_status?: string
+          reviewed_at?: string | null
           status?: string
         }
         Relationships: []
