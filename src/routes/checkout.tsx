@@ -33,6 +33,7 @@ function Checkout() {
   const checkEligibility = useServerFn(checkSocialEligibility);
   const started = useRef(false);
   const [facebookId, setFacebookId] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
   const [claimedStatus, setClaimedStatus] = useState('neither');
   const [verifiedCode, setVerifiedCode] = useState('');
   const [verificationBusy, setVerificationBusy] = useState(false);
@@ -47,10 +48,10 @@ function Checkout() {
     window.__lovableEvents?.track?.('project.coupon_selected', { coupon: next.coupon.code });
   }
   async function verifyStatus() {
-    if (!price.coupon || !facebookId.trim()) { setVerificationMessage('Enter your Facebook ID and select a coupon first.'); return; }
+    if (!price.coupon || !facebookId.trim() || !verificationCode.trim()) { setVerificationMessage('Enter your Facebook ID, verification code and select a coupon first.'); return; }
     setVerificationBusy(true);
     try {
-      const result = await checkEligibility({ data: { facebookId, coupon: price.coupon.code } });
+      const result = await checkEligibility({ data: { facebookId, verificationCode, coupon: price.coupon.code } });
       setVerifiedCode(result.verified ? price.coupon.code : '');
       setVerificationMessage(result.verified ? 'Status verified. Your discount is active.' : 'Status is not verified. Full payment of ₹941 is required for your report. Contact us for Facebook review.');
     } catch { setVerifiedCode(''); setVerificationMessage('Verification could not be completed. Full payment of ₹941 is required.'); }
@@ -60,7 +61,7 @@ function Checkout() {
     event.preventDefault();
     if (busy) return;
     const form = new FormData(event.currentTarget);
-    const parsed = reportOrderSchema.safeParse({ ...Object.fromEntries(form), approximate, coupon: verifiedCode === couponCode ? couponCode : '', facebookId, claimedStatus });
+    const parsed = reportOrderSchema.safeParse({ ...Object.fromEntries(form), approximate, coupon: verifiedCode === couponCode ? couponCode : '', facebookId, verificationCode, claimedStatus });
     if (!parsed.success) { setPaymentError('Please check your birth details and contact information.'); return; }
     setBusy(true); setPaymentError('');
     window.__lovableEvents?.track?.('project.payment_attempted', { amount_paise: total, coupon: verifiedCode || 'none' });
@@ -100,6 +101,7 @@ function Checkout() {
                 <div className="checkout-field"><label htmlFor="focus">Reading Focus</label><select id="focus" name="focus"><option>General guidance</option><option>Career</option><option>Relationships</option><option>Family</option><option>Financial habits</option></select></div>
                 <div className="checkout-field"><label htmlFor="claimed-status">Are you a follower or subscriber?</label><select id="claimed-status" value={claimedStatus} onChange={event => { setClaimedStatus(event.target.value); setVerifiedCode(''); }}><option value="neither">Neither</option><option value="follower">Facebook follower</option><option value="subscriber">Facebook subscriber</option></select></div>
                 <div className="checkout-field"><label htmlFor="facebook-id">Facebook ID / username</label><input id="facebook-id" value={facebookId} maxLength={100} placeholder="Your Facebook ID or username" onChange={event => { setFacebookId(event.target.value); setVerifiedCode(''); }} /><small>Claims need review. Unverified orders require ₹941.</small></div>
+                <div className="checkout-field"><label htmlFor="verification-code">Verification code</label><input id="verification-code" value={verificationCode} maxLength={64} autoComplete="off" placeholder="Code sent to you after review" onChange={event => { setVerificationCode(event.target.value); setVerifiedCode(''); }} /><small>We share this private code with you on WhatsApp once your status is verified.</small></div>
               </div>
               <p className="checkout-terms">By clicking “Pay Now”, I agree to the <Link to="/terms.html">Terms and Conditions</Link> and <Link to="/privacy.html">Privacy Policy</Link>.</p>
             </section>

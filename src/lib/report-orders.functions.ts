@@ -5,12 +5,20 @@ import { calculateReportPrice } from './checkout-pricing';
 import { eligiblePrice } from './eligibility';
 import { z } from 'zod';
 
+// Eligibility is only revealed to a caller who proves ownership with the private code issued after review.
+async function reviewedEligibility(facebookId: string, code: string) {
+  if (!facebookId || !code) return null;
+  const { hashToken } = await import('./razorpay.server');
+  const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
+  const { data } = await supabaseAdmin.from('facebook_eligibility').select('follower_verified,subscriber_verified,verification_code_hash').eq('facebook_id', facebookId.toLowerCase()).maybeSingle();
+  if (!data?.verification_code_hash || data.verification_code_hash !== await hashToken(code.trim())) return null;
+  return { follower_verified: data.follower_verified, subscriber_verified: data.subscriber_verified };
+}
+
 export const checkSocialEligibility = createServerFn({ method: 'POST' })
-  .inputValidator((input: unknown) => z.object({ facebookId: z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._-]+$/), coupon: z.enum(['Follower20', 'Subscriber50']) }).parse(input))
+  .inputValidator((input: unknown) => z.object({ facebookId: z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9._-]+$/), verificationCode: z.string().trim().min(6).max(64), coupon: z.enum(['Follower20', 'Subscriber50']) }).parse(input))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const { data: status } = await supabaseAdmin.from('facebook_eligibility').select('follower_verified,subscriber_verified').eq('facebook_id', data.facebookId.toLowerCase()).maybeSingle();
-    return eligiblePrice(data.coupon, status);
+    return eligiblePrice(data.coupon, await reviewedEligibility(data.facebookId, data.verificationCode));
   });
 
 export const createReportPayment = createServerFn({ method: 'POST' })
@@ -25,7 +33,7 @@ export const createReportPayment = createServerFn({ method: 'POST' })
     const callback = `${origin}/checkout/confirmation?order=${id}&token=${token}`;
     // Privileged write is restricted to a newly minted guest order, never arbitrary rows.
     const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const { data: reviewed } = data.facebookId ? await supabaseAdmin.from('facebook_eligibility').select('follower_verified,subscriber_verified').eq('facebook_id', data.facebookId.toLowerCase()).maybeSingle() : { data: null };
+    const reviewed = await reviewedEligibility(data.facebookId, data.verificationCode);
     const eligibility = eligiblePrice(data.coupon, reviewed);
     const { error: insertError } = await supabaseAdmin.from('report_orders').insert({
       id, access_hash: await hashToken(token), details: data, amount_paise: eligibility.amount, coupon_code: eligibility.verified ? price.coupon?.code ?? null : null,

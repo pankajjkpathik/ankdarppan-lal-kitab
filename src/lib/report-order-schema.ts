@@ -15,6 +15,7 @@ export const reportOrderSchema = z.object({
   email: z.string().trim().email().max(254),
   coupon: z.string().trim().max(30),
   facebookId: z.string().trim().max(100).regex(/^[a-zA-Z0-9._-]*$/).default(''),
+  verificationCode: z.string().trim().max(64).default(''),
   claimedStatus: z.enum(['neither', 'follower', 'subscriber']).default('neither'),
   focus: z.enum(['General guidance', 'Career', 'Relationships', 'Family', 'Financial habits']).default('General guidance'),
 });
