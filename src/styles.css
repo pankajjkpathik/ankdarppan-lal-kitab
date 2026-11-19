@@ -272,3 +272,7 @@
 .admin-link { color: #F4C542; text-decoration: underline; background: none; border: 0; cursor: pointer; justify-self: start; }
 .admin-list { display: grid; gap: .5rem; }
 .admin-list li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid rgba(200,154,62,0.25); }
+.admin-shell .admin-outline { background: transparent; color: #F4C542; border: 1px solid rgba(200,154,62,0.6); }
+.admin-shell .admin-outline:hover { background: rgba(200,154,62,0.15); color: #F4C542; }
+.admin-select { width: 100%; min-width: 0; }
+.admin-field { min-width: 0; }

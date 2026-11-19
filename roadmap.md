@@ -12,4 +12,4 @@
 - [x] Import and verify Contact, Shipping, Terms, Refund, and Privacy pages.
 - [x] Connect the requested Razorpay account and verify the app credential path.
 - [x] Create securely priced Razorpay hosted payments; verify ₹470.50 checkout, real saved pending-order readback, invalid-token denial and payment verification tests.
-- [ ] Verify a completed payment and successful customer return — requires a customer-authorized payment; no real charge was made during testing.
+- [ ] Verify a completed payment and successful customer return — requires a customer-authorized payment; no real charge was made during testing.- [x] Admin page for approving Facebook followers/subscribers with private codes (/admin)
