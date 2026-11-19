@@ -25,11 +25,9 @@ export async function razorpayRequest(path: string, body?: unknown) {
   return paymentLinkSchema.parse(await response.json());
 }
 
-export async function accessToken(order: string) {
-  const secret = process.env['REPORT_ORDER_ACCESS_SECRET'];
-  if (!secret) throw new Error('Order security is not configured.');
-  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  return toHex(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(order)));
+// Random per-order capability; only its SHA-256 hash is stored, so no server secret is required.
+export async function accessToken(_order: string) {
+  return toHex(crypto.getRandomValues(new Uint8Array(32)).buffer);
 }
 export async function hashToken(token: string) { return toHex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token))); }
 function toHex(buffer: ArrayBuffer) { return Array.from(new Uint8Array(buffer), byte => byte.toString(16).padStart(2, '0')).join(''); }
