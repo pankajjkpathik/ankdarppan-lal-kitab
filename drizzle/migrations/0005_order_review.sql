@@ -1,0 +1,2 @@
+ALTER TABLE public.report_orders ADD COLUMN review_status text NOT NULL DEFAULT 'pending', ADD COLUMN balance_link_id text, ADD COLUMN balance_link_url text, ADD COLUMN reviewed_at timestamptz;
+ALTER TABLE public.report_orders ADD CONSTRAINT report_orders_review_status_check CHECK (review_status IN ('pending','genuine','balance_requested','balance_paid'));
