@@ -33,10 +33,10 @@ export const createReportPayment = createServerFn({ method: 'POST' })
     const callback = `${origin}/checkout/confirmation?order=${id}&token=${token}`;
     // Privileged write is restricted to a newly minted guest order, never arbitrary rows.
     const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const reviewed = await reviewedEligibility(data.facebookId, data.verificationCode);
-    const eligibility = eligiblePrice(data.coupon, reviewed);
+    // Discounts are charged on the customer's claim; the order stays unverified until reviewed by the team.
+    const eligibility = { amount: price.total, verified: false };
     const { error: insertError } = await supabaseAdmin.from('report_orders').insert({
-      id, access_hash: await hashToken(token), details: data, amount_paise: eligibility.amount, coupon_code: eligibility.verified ? price.coupon?.code ?? null : null,
+      id, access_hash: await hashToken(token), details: data, amount_paise: eligibility.amount, coupon_code: price.coupon?.code ?? null,
       facebook_id: data.facebookId.toLowerCase() || null, claimed_status: data.claimedStatus, eligibility_verified: eligibility.verified,
     });
     if (insertError) throw new Error('Your order could not be saved. No payment has been taken.');
