@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, LockKeyhole, ShieldCheck, X } from 'lucide-react
 import { Button } from '@/components/ui/button';
 import { calculateReportPrice, CHECKOUT_COUPONS, formatINR, REPORT_PRICE_PAISE } from '@/lib/checkout-pricing';
 import checkoutCSS from '@/styles/pages/checkout.css?raw';
-import { createReportPayment, checkSocialEligibility } from '@/lib/report-orders.functions';
+import { createReportPayment } from '@/lib/report-orders.functions';
 import { reportOrderSchema } from '@/lib/report-order-schema';
 
 export const Route = createFileRoute('/checkout')({
