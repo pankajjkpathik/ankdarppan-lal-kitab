@@ -1,12 +1,10 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { isAdmin, listApprovals, saveApproval, removeApproval, listOrders, markGenuine, requestBalance, checkBalance } from '@/lib/admin.functions';
+import { isAdmin, listOrders, markGenuine, requestBalance, checkBalance } from '@/lib/admin.functions';
 import { formatINR } from '@/lib/checkout-pricing';
 
 export const Route = createFileRoute('/_authenticated/admin')({
@@ -22,25 +20,10 @@ export const Route = createFileRoute('/_authenticated/admin')({
   component: AdminPage,
 });
 
-function newCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; const bytes = crypto.getRandomValues(new Uint8Array(8));
-  return Array.from(bytes, b => chars[b % chars.length]).join('');
-}
-
 function AdminPage() {
-  const navigate = useNavigate(); const qc = useQueryClient();
-  const checkAdmin = useServerFn(isAdmin); const list = useServerFn(listApprovals);
-  const save = useServerFn(saveApproval); const remove = useServerFn(removeApproval);
+  const navigate = useNavigate();
+  const checkAdmin = useServerFn(isAdmin);
   const admin = useQuery({ queryKey: ['is-admin'], queryFn: () => checkAdmin() });
-  const rows = useQuery({ queryKey: ['approvals'], queryFn: () => list(), enabled: admin.data === true });
-  const [facebookId, setFacebookId] = useState(''); const [status, setStatus] = useState<'follower' | 'subscriber'>('follower');
-  const [code, setCode] = useState(newCode); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
-  async function submit(e: FormEvent) {
-    e.preventDefault(); setBusy(true); setMsg('');
-    try { await save({ data: { facebookId, status, code } }); setMsg(`Saved. Send this code to ${facebookId} on WhatsApp: ${code}`); setFacebookId(''); setCode(newCode()); qc.invalidateQueries({ queryKey: ['approvals'] }); }
-    catch (err) { setMsg(err instanceof Error ? err.message : 'Could not save.'); }
-    setBusy(false);
-  }
   async function signOut() { await supabase.auth.signOut(); navigate({ to: '/auth' }); }
   if (admin.isLoading) return <main className="admin-shell"><p className="admin-note">Loading…</p></main>;
   if (!admin.data) return <main className="admin-shell"><div className="admin-card admin-narrow"><h1 className="admin-title">No admin access</h1><p className="admin-note">This account is not an Ank Darppan admin.</p><Button onClick={signOut}>Sign out</Button></div></main>;
