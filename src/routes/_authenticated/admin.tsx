@@ -10,9 +10,9 @@ import { formatINR } from '@/lib/checkout-pricing';
 export const Route = createFileRoute('/_authenticated/admin')({
   staticData: { sitemap: false },
   head: () => ({ meta: [
-    { title: 'Discount Approvals | Ank Darppan Admin' },
-    { name: 'description', content: 'Approve Facebook followers and subscribers for Ank Darppan discounts.' },
-    { property: 'og:title', content: 'Discount Approvals | Ank Darppan Admin' },
+    { title: 'Order Review | Ank Darppan Admin' },
+    { name: 'description', content: 'Review paid Lal Kitab orders and request balances.' },
+    { property: 'og:title', content: 'Order Review | Ank Darppan Admin' },
     { property: 'og:description', content: 'Ank Darppan staff tools.' },
     { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' },
     { name: 'robots', content: 'noindex, nofollow' },
