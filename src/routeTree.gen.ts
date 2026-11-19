@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactDothtmlRouteImport } from './routes/contact[.]html'
 import { Route as PrivacyDothtmlRouteImport } from './routes/privacy[.]html'
@@ -17,11 +19,21 @@ import { Route as RefundDothtmlRouteImport } from './routes/refund[.]html'
 import { Route as ShippingDothtmlRouteImport } from './routes/shipping[.]html'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsDothtmlRouteImport } from './routes/terms[.]html'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as CheckoutConfirmationRouteImport } from './routes/checkout_.confirmation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -59,6 +71,11 @@ const TermsDothtmlRoute = TermsDothtmlRouteImport.update({
   path: '/terms.html',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const CheckoutConfirmationRoute = CheckoutConfirmationRouteImport.update({
   id: '/checkout_/confirmation',
   path: '/checkout/confirmation',
@@ -67,6 +84,7 @@ const CheckoutConfirmationRoute = CheckoutConfirmationRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
@@ -74,10 +92,12 @@ export interface FileRoutesByFullPath {
   '/shipping.html': typeof ShippingDothtmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
@@ -85,11 +105,14 @@ export interface FileRoutesByTo {
   '/shipping.html': typeof ShippingDothtmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/contact.html': typeof ContactDothtmlRoute
   '/privacy.html': typeof PrivacyDothtmlRoute
@@ -97,12 +120,14 @@ export interface FileRoutesById {
   '/shipping.html': typeof ShippingDothtmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms.html': typeof TermsDothtmlRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/checkout_/confirmation': typeof CheckoutConfirmationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/checkout'
     | '/contact.html'
     | '/privacy.html'
@@ -110,10 +135,12 @@ export interface FileRouteTypes {
     | '/shipping.html'
     | '/sitemap.xml'
     | '/terms.html'
+    | '/admin'
     | '/checkout/confirmation'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/checkout'
     | '/contact.html'
     | '/privacy.html'
@@ -121,10 +148,13 @@ export interface FileRouteTypes {
     | '/shipping.html'
     | '/sitemap.xml'
     | '/terms.html'
+    | '/admin'
     | '/checkout/confirmation'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/checkout'
     | '/contact.html'
     | '/privacy.html'
@@ -132,11 +162,14 @@ export interface FileRouteTypes {
     | '/shipping.html'
     | '/sitemap.xml'
     | '/terms.html'
+    | '/_authenticated/admin'
     | '/checkout_/confirmation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactDothtmlRoute: typeof ContactDothtmlRoute
   PrivacyDothtmlRoute: typeof PrivacyDothtmlRoute
@@ -154,6 +187,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -205,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/checkout_/confirmation': {
       id: '/checkout_/confirmation'
       path: '/checkout/confirmation'
@@ -215,8 +269,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
   ContactDothtmlRoute: ContactDothtmlRoute,
   PrivacyDothtmlRoute: PrivacyDothtmlRoute,
